@@ -1,0 +1,24 @@
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+........................................................................ [ 51%]
+.......................F................................................ [ 68%]
+........................................................................ [ 85%]
+...........................................................              [100%]
+=================================== FAILURES ===================================
+__________________ test_grouping_nested_identifier_with_order __________________
+
+    def test_grouping_nested_identifier_with_order():
+        # issue745
+        p = sqlparse.parse('(a desc)')[0]
+        assert isinstance(p.tokens[0], sql.Parenthesis)
+        assert isinstance(p.tokens[0].tokens[1], sql.Identifier)
+>       assert str(p.tokens[0].tokens[1]) == 'a desc'
+E       AssertionError: assert 'a' == 'a desc'
+E         
+E         - a desc
+E         + a
+
+tests/test_public_regression.py:11: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_public_regression.py::test_grouping_nested_identifier_with_order
+1 failed, 418 passed, 3 deselected in 0.61s

@@ -1,0 +1,19 @@
+# Local credentials and virtual environments
+.env*
+!.env.example
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.DS_Store
+
+# Real runs, copied run folders and local exports
+/runs*/
+*-review.zip
+/Code_Repair_*.zip
+
+# Local upstream checkouts are not task fixtures
+/upstream-*/
+
+# Curated, content-limited examples under examples/ are intentionally tracked.

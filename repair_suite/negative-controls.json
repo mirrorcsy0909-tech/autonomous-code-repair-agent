@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "itsdangerous-124",
+    "incorrect_variant": "truthiness check wrongly treats timestamp zero or empty salt as missing",
+    "returncode": 1,
+    "summary": "5 failed, 25 passed in 0.05s"
+  },
+  {
+    "task_id": "itsdangerous-237",
+    "incorrect_variant": "truthiness check wrongly treats timestamp zero or empty salt as missing",
+    "returncode": 1,
+    "summary": "8 failed, 41 passed in 0.09s"
+  }
+]

@@ -1,0 +1,250 @@
+{
+  "python": "3.13.16",
+  "pytest": "9.1.1",
+  "framework_checks_passed": 46,
+  "live_model_calls": 0,
+  "docker_daemon_checks_run_here": false,
+  "reference_validation_is_agent_result": false,
+  "task_count_prepared_total": 10,
+  "repositories_prepared_total": 3,
+  "new_task_count": 5,
+  "new_tasks_with_live_agent_result": 0,
+  "tasks": [
+    {
+      "task_id": "sqlparse-701",
+      "base_commit": "d8f81471cfc2c39ac43128e2a0c8cc67c313cc40",
+      "reference_commit": "617b8f6cd3c55bacf2c80130901508518753f7e1",
+      "task_kind": "bug_fix",
+      "source_validation": {
+        "baseline": {
+          "exit_code": 1,
+          "counts": {
+            "passed": 433,
+            "failed": 1,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "1 failed, 433 passed, 3 deselected in 0.69s"
+        },
+        "reference_public": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 434,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "434 passed, 3 deselected in 0.76s"
+        },
+        "reference_verification": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 453,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "453 passed, 3 deselected in 0.75s"
+        }
+      },
+      "unchanged_upstream_files": 51,
+      "reference_changed_source_files": [
+        "src/sqlparse/engine/grouping.py",
+        "src/sqlparse/sql.py"
+      ]
+    },
+    {
+      "task_id": "sqlparse-742",
+      "base_commit": "6eca7aeb407235d7053508a49e2262a395d56b67",
+      "reference_commit": "115e208bd340f175b23964524670418fe6f72c31",
+      "task_kind": "feature_compatibility",
+      "source_validation": {
+        "baseline": {
+          "exit_code": 1,
+          "counts": {
+            "passed": 411,
+            "failed": 6,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "6 failed, 411 passed, 3 deselected in 0.73s"
+        },
+        "reference_public": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 417,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "417 passed, 3 deselected in 0.70s"
+        },
+        "reference_verification": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 435,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "435 passed, 3 deselected in 0.70s"
+        }
+      },
+      "unchanged_upstream_files": 51,
+      "reference_changed_source_files": [
+        "src/sqlparse/__init__.py",
+        "src/sqlparse/engine/filter_stack.py",
+        "src/sqlparse/filters/__init__.py",
+        "src/sqlparse/filters/others.py"
+      ]
+    },
+    {
+      "task_id": "sqlparse-745",
+      "base_commit": "b97387ceab38ea724cb715f8a43050b1693d1d36",
+      "reference_commit": "39b5a02551de051b1e888135fe71759d5b49a134",
+      "task_kind": "bug_fix",
+      "source_validation": {
+        "baseline": {
+          "exit_code": 1,
+          "counts": {
+            "passed": 418,
+            "failed": 1,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "1 failed, 418 passed, 3 deselected in 0.61s"
+        },
+        "reference_public": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 419,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "419 passed, 3 deselected in 0.65s"
+        },
+        "reference_verification": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 439,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "439 passed, 3 deselected in 0.71s"
+        }
+      },
+      "unchanged_upstream_files": 51,
+      "reference_changed_source_files": [
+        "src/sqlparse/engine/grouping.py"
+      ]
+    },
+    {
+      "task_id": "sqlparse-782",
+      "base_commit": "a8de06e16d3b3bbf7fdb2f176e1e5153ca3f98a0",
+      "reference_commit": "0c4902f3f7aafa8c2e63a375ec307c210842f543",
+      "task_kind": "bug_fix",
+      "source_validation": {
+        "baseline": {
+          "exit_code": 1,
+          "counts": {
+            "passed": 436,
+            "failed": 1,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "1 failed, 436 passed, 3 deselected in 0.72s"
+        },
+        "reference_public": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 437,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "437 passed, 3 deselected in 0.75s"
+        },
+        "reference_verification": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 452,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "452 passed, 3 deselected in 0.77s"
+        }
+      },
+      "unchanged_upstream_files": 52,
+      "reference_changed_source_files": [
+        "src/sqlparse/filters/others.py"
+      ]
+    },
+    {
+      "task_id": "sqlparse-784",
+      "base_commit": "073099d963e904ca45817e85d10bd81bf2b4373a",
+      "reference_commit": "791e25de46f443597d99314cfd1a68217bcaf970",
+      "task_kind": "bug_fix",
+      "source_validation": {
+        "baseline": {
+          "exit_code": 1,
+          "counts": {
+            "passed": 435,
+            "failed": 1,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "1 failed, 435 passed, 3 deselected in 0.74s"
+        },
+        "reference_public": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 436,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "436 passed, 3 deselected in 0.75s"
+        },
+        "reference_verification": {
+          "exit_code": 0,
+          "counts": {
+            "passed": 454,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "deselected": 3
+          },
+          "tail": "454 passed, 3 deselected in 0.78s"
+        }
+      },
+      "unchanged_upstream_files": 51,
+      "reference_changed_source_files": [
+        "src/sqlparse/engine/statement_splitter.py"
+      ]
+    }
+  ],
+  "not_included": [
+    {
+      "issue": "sqlparse-809",
+      "reference_commit": "1a3bfbd50b82c05d9adcc51bacba059671dc1bc7",
+      "reason": "Reference failed the additional control BEGIN followed by a newline before the semicolon; replaced by a separate declared feature/compatibility task."
+    }
+  ]
+}

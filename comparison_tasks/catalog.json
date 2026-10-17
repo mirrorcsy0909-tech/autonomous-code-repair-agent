@@ -1,0 +1,7 @@
+{
+  "suite_id": "second-repository-paired-v1",
+  "tasks": [
+    "dotenv-256",
+    "dotenv-361"
+  ]
+}

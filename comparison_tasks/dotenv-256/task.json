@@ -1,0 +1,46 @@
+{
+  "id": "dotenv-256",
+  "title": "Variable expansion precedence",
+  "repository": "https://github.com/theskumar/python-dotenv",
+  "issue_url": "https://github.com/theskumar/python-dotenv/issues/256",
+  "base_commit": "d83c1b65ceab5cf1223c41649a25a142755fe703",
+  "reference_commit": "6712bc8a12db1e8d3f09b7bf7d3c25338992e422",
+  "issue": "Variable expansion chooses an existing environment value over an earlier binding in the current file. For this historical API, interpolation should prefer an already parsed file binding, fall back to the environment when no such binding exists, and keep default/missing-variable behavior. Preserve the existing load_dotenv assignment policy and the interpolate=False option. The selected public tests reproduce the precedence failure.",
+  "allowed_files": [
+    "src/dotenv/__init__.py",
+    "src/dotenv/cli.py",
+    "src/dotenv/compat.py",
+    "src/dotenv/ipython.py",
+    "src/dotenv/main.py",
+    "src/dotenv/parser.py",
+    "src/dotenv/version.py"
+  ],
+  "baseline_failed": 1,
+  "baseline_passed": 56,
+  "public_test_count": 57,
+  "verification_test_count": 77,
+  "supplemental_test_count": 20,
+  "regression_markers": [
+    "test_dotenv_values_stream",
+    "expected17"
+  ],
+  "image_tag": "code-repair-python:dotenv-comparison-v1",
+  "harness_id": "paired-workflows-v1",
+  "context_files": [
+    "src/dotenv/__init__.py",
+    "src/dotenv/cli.py",
+    "src/dotenv/compat.py",
+    "src/dotenv/ipython.py",
+    "src/dotenv/main.py",
+    "src/dotenv/parser.py",
+    "src/dotenv/version.py",
+    "pytest.ini",
+    "tests/conftest.py",
+    "tests/test_public_regression.py",
+    "tests/test_parser.py",
+    "tests/test_utils.py"
+  ],
+  "test_scope": "Selected upstream parser/helpers plus one extracted upstream regression function; full project suite is not collected.",
+  "extracted_upstream_function": "test_dotenv_values_stream",
+  "extracted_snippet_sha256": "53173ed2bd05442f9bc79c6a356f08dfaba18ffe54c9e3256849f491ce7deb60"
+}

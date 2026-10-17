@@ -1,0 +1,9 @@
+{
+  "tasks": [
+    "sqlparse-701",
+    "sqlparse-745",
+    "sqlparse-782",
+    "sqlparse-784",
+    "sqlparse-742"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "exit_code": 1,
+    "counts": {
+      "passed": 418,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "deselected": 3
+    },
+    "tail": "1 failed, 418 passed, 3 deselected in 0.61s"
+  },
+  "reference_public": {
+    "exit_code": 0,
+    "counts": {
+      "passed": 419,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "deselected": 3
+    },
+    "tail": "419 passed, 3 deselected in 0.65s"
+  },
+  "reference_verification": {
+    "exit_code": 0,
+    "counts": {
+      "passed": 439,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "deselected": 3
+    },
+    "tail": "439 passed, 3 deselected in 0.71s"
+  }
+}

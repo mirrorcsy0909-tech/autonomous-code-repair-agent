@@ -1,0 +1,23 @@
+{
+  "LICENSE": "d27209ab3d162782a8f8e3872b9b353c49e092c9aa467a64522883407d8d1030",
+  "README.md": "198101a8332fff128c43496ae9639800a538675d1e46bdc5e98f7bf25bd57c2d",
+  "pytest.ini": "b7462b9f19134a3f57628273fe2bf1e85ea18f945bca65eb4918a4d92fe6b4e1",
+  "setup.cfg": "50832490fc6fe1052ec462540969019a38d5c96c948eadbed6de914e3f8b0436",
+  "setup.py": "7d4c137f9cb79238eed8f5dbd04d660076eb529e51040037ed1aad5617aa6c6b",
+  "src/dotenv/__init__.py": "ec3a3b49a2bbf40adf6fc5a4c9fae7fbbc028f693c56413aaae4f2cfcf1ad317",
+  "src/dotenv/cli.py": "b6ecf963c72062f63c1942e03903fd5538753b14d8071c7ab19c93a16551c38d",
+  "src/dotenv/compat.py": "2213260665e3b6bb3b55d29a0ca3428e27be4c08030b6108e69d014ab35f468f",
+  "src/dotenv/ipython.py": "3a5b2ad50f2ac045b5c707d3c25a9a27ab635ccedf2207b15e5b6602ca1a4eae",
+  "src/dotenv/main.py": "18cf893cea04de57a26a2e3f38a5a38a329d4301b7a93cfa5e1e9653b69ace57",
+  "src/dotenv/parser.py": "e7fab02fde277fa2ed1f44e0b3fa7195abbef1b6501cdf7293c3a5425dea889f",
+  "src/dotenv/py.typed": "f0f8f2675695a10a5156fb7bd66bafbaae6a13e8d315990af862c792175e6e67",
+  "src/dotenv/version.py": "0e0a4b35bbf47b52c810e39ee780dbf3fdfdd22f697a53041449ec06c366ca10",
+  "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tests/conftest.py": "93c95970ce79229a437b6c5503cee9b98dcec5e71d5ea71d389bd730527fa527",
+  "tests/test_cli.py": "c27a79fa9ab6aa3583356d28a6258f26034725a6a89e469d7d9a8a0eb0549a33",
+  "tests/test_ipython.py": "97292dba82dfa4499dca8b878b2ea517d48bc2ff47423ee9fad137015e1c94e5",
+  "tests/test_main.py": "d3261d51fe6b6079f52d49e6c730d572fb7ab5726c7684a8e6fc88c48ae98527",
+  "tests/test_parser.py": "6f3a9882cb19838c8f1354d21471ac8b14c12324de30f4adc05f7012e35fed3f",
+  "tests/test_public_regression.py": "d600597f29416312978235a94d89c62e9d73dc41f254916157b34aafa3aeefc6",
+  "tests/test_utils.py": "ea5c99ec22e8da66f78c4a5e7a29d32617ed1cf42427d51eacb8f86d0fb75ed0"
+}

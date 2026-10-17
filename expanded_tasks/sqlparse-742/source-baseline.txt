@@ -1,0 +1,142 @@
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+........................................................................ [ 51%]
+......................FFFFFF............................................ [ 69%]
+........................................................................ [ 86%]
+.........................................................                [100%]
+=================================== FAILURES ===================================
+___________ test_split_strip_semicolon[select * from foo;-expected0] ___________
+
+sql = 'select * from foo;', expected = ['select * from foo']
+
+    @pytest.mark.parametrize('sql, expected', [
+        ('select * from foo;', ['select * from foo']),
+        ('select * from foo', ['select * from foo']),
+        ('select * from foo; select * from bar;', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('  select * from foo;\n\nselect * from bar;\n\n\n\n', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('select * from foo\n\n;  bar', ['select * from foo', 'bar']),
+    ])
+    def test_split_strip_semicolon(sql, expected):
+>       stmts = sqlparse.split(sql, strip_semicolon=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:20: TypeError
+___________ test_split_strip_semicolon[select * from foo-expected1] ____________
+
+sql = 'select * from foo', expected = ['select * from foo']
+
+    @pytest.mark.parametrize('sql, expected', [
+        ('select * from foo;', ['select * from foo']),
+        ('select * from foo', ['select * from foo']),
+        ('select * from foo; select * from bar;', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('  select * from foo;\n\nselect * from bar;\n\n\n\n', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('select * from foo\n\n;  bar', ['select * from foo', 'bar']),
+    ])
+    def test_split_strip_semicolon(sql, expected):
+>       stmts = sqlparse.split(sql, strip_semicolon=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:20: TypeError
+_ test_split_strip_semicolon[select * from foo; select * from bar;-expected2] __
+
+sql = 'select * from foo; select * from bar;'
+expected = ['select * from foo', 'select * from bar']
+
+    @pytest.mark.parametrize('sql, expected', [
+        ('select * from foo;', ['select * from foo']),
+        ('select * from foo', ['select * from foo']),
+        ('select * from foo; select * from bar;', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('  select * from foo;\n\nselect * from bar;\n\n\n\n', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('select * from foo\n\n;  bar', ['select * from foo', 'bar']),
+    ])
+    def test_split_strip_semicolon(sql, expected):
+>       stmts = sqlparse.split(sql, strip_semicolon=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:20: TypeError
+_ test_split_strip_semicolon[  select * from foo;\n\nselect * from bar;\n\n\n\n-expected3] _
+
+sql = '  select * from foo;\n\nselect * from bar;\n\n\n\n'
+expected = ['select * from foo', 'select * from bar']
+
+    @pytest.mark.parametrize('sql, expected', [
+        ('select * from foo;', ['select * from foo']),
+        ('select * from foo', ['select * from foo']),
+        ('select * from foo; select * from bar;', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('  select * from foo;\n\nselect * from bar;\n\n\n\n', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('select * from foo\n\n;  bar', ['select * from foo', 'bar']),
+    ])
+    def test_split_strip_semicolon(sql, expected):
+>       stmts = sqlparse.split(sql, strip_semicolon=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:20: TypeError
+______ test_split_strip_semicolon[select * from foo\n\n;  bar-expected4] _______
+
+sql = 'select * from foo\n\n;  bar', expected = ['select * from foo', 'bar']
+
+    @pytest.mark.parametrize('sql, expected', [
+        ('select * from foo;', ['select * from foo']),
+        ('select * from foo', ['select * from foo']),
+        ('select * from foo; select * from bar;', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('  select * from foo;\n\nselect * from bar;\n\n\n\n', [
+            'select * from foo',
+            'select * from bar',
+        ]),
+        ('select * from foo\n\n;  bar', ['select * from foo', 'bar']),
+    ])
+    def test_split_strip_semicolon(sql, expected):
+>       stmts = sqlparse.split(sql, strip_semicolon=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:20: TypeError
+_____________________ test_split_strip_semicolon_procedure _____________________
+
+load_file = <function load_file.<locals>.make_load_file at 0x7fd37449eca0>
+
+    def test_split_strip_semicolon_procedure(load_file):
+>       stmts = sqlparse.split(load_file('mysql_handler.sql'),
+                               strip_semicolon=True)
+E       TypeError: split() got an unexpected keyword argument 'strip_semicolon'
+
+tests/test_public_regression.py:27: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_public_regression.py::test_split_strip_semicolon[select * from foo;-expected0]
+FAILED tests/test_public_regression.py::test_split_strip_semicolon[select * from foo-expected1]
+FAILED tests/test_public_regression.py::test_split_strip_semicolon[select * from foo; select * from bar;-expected2]
+FAILED tests/test_public_regression.py::test_split_strip_semicolon[  select * from foo;\n\nselect * from bar;\n\n\n\n-expected3]
+FAILED tests/test_public_regression.py::test_split_strip_semicolon[select * from foo\n\n;  bar-expected4]
+FAILED tests/test_public_regression.py::test_split_strip_semicolon_procedure
+6 failed, 411 passed, 3 deselected in 0.73s

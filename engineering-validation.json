@@ -1,0 +1,57 @@
+{
+  "framework_checks": {
+    "count": 78,
+    "status": "passed",
+    "python": "3.12.14",
+    "sdk": "1.53.0",
+    "uv": "0.12.23",
+    "platform": "Linux"
+  },
+  "fixture_integrity": {
+    "task_count": 10,
+    "status": "passed"
+  },
+  "uv_lock_check": {
+    "command": "uv lock --check --offline",
+    "status": "passed",
+    "resolved_packages": 356
+  },
+  "workflow_structure": {
+    "status": "validated locally",
+    "action_references_pinned_to_full_commit_sha": true,
+    "default_model_calls": 0,
+    "remote_workflow_executed": false
+  },
+  "unified_report_and_export": {
+    "prefix": "expanded-002",
+    "one_shot_passed": 5,
+    "iterative_passed": 5,
+    "attempts_per_workflow": 5,
+    "status": "passed"
+  },
+  "examples": {
+    "files": 3,
+    "rows": 32,
+    "status": "recorded counts, medians and token totals recomputed"
+  },
+  "real_model_calls": 0,
+  "docker_daemon_used": false,
+  "mac_entrypoint_validation": "pending user commands",
+  "files_sha256": {
+    ".env.example": "6d37261743f12e400c945136a7e0c3a06d1188f3516e8ef495908013c27bc068",
+    ".github/workflows/ci.yml": "16a36b6477bb6d37a7aaeb657e43014f77b365738c0dc311fca773f096407a5d",
+    ".gitignore": "b429271eaeaab8b10fc80a958d1b803a8daea2ce7568015f0b704ff943c80e00",
+    "ENGINEERING_UPDATE.md": "69b30ebd5da6cdfe0d4d4ba57688aabb1a9fe3604b969d69287af88677df334e",
+    "README.md": "719b9cc3c8057dced6f4e59b78f1b21e4f5b7a4d5ac2b8fb50d81989bd5ae10b",
+    "THIRD_PARTY_NOTICES.md": "0715c7a072fabdc1e82c40ff211aebecc64fd404f4100bf4d2f8263806b3ca01",
+    "docs/architecture.md": "85133fb5b2e8ea17e8e5d35b1c1261aff88f9dc658cf2df97088fab0cbd23e1a",
+    "docs/evaluation.md": "5a6bb63e45e98cb2f5d23f91cc884e376e1470ce1a7ceca80ba42392d8e6f70b",
+    "docs/operations.md": "d01caed271cf392b1aab116e14a0e918e918fdf21d58ed76c51c9adbb45436d3",
+    "examples/reports/README.md": "30a6ba74524e843c31bdf896841f6beb2a8f0d351a3d8c3ffa3917f19270283e",
+    "examples/reports/compare-002.json": "91a87371ce6d617e1a241413e63fcffaefdbb0d91becd085a28b722405ec8ea6",
+    "examples/reports/expanded-001.json": "cdf953eab93224afc378c701fd6cf493bc705656bb8335987782f9c45dfe0e17",
+    "examples/reports/expanded-002.json": "506fe4bd01679b15179cb4a4ec929b3dcc77830b2771835a5e2023499f4d4555",
+    "project.py": "2b033fcb2e58244ab7a0fdb2be3465307b740ea2caeb1d0e1abb2f71fb382911",
+    "test_project.py": "1b13ef0bd6b05e059c89292bc68f6d39e6f852f76d5e65173ad78ec92a9fbc52"
+  }
+}

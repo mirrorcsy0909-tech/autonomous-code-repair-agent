@@ -1,0 +1,28 @@
+........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 49%]
+..................................F..................................... [ 66%]
+........................................................................ [ 82%]
+........................................................................ [ 99%]
+..                                                                       [100%]
+=================================== FAILURES ===================================
+______________________ test_grouping_identifier_function _______________________
+
+    def test_grouping_identifier_function():
+        p = sqlparse.parse('foo() as bar')[0]
+        assert isinstance(p.tokens[0], sql.Identifier)
+        assert isinstance(p.tokens[0].tokens[0], sql.Function)
+        p = sqlparse.parse('foo()||col2 bar')[0]
+        assert isinstance(p.tokens[0], sql.Identifier)
+        assert isinstance(p.tokens[0].tokens[0], sql.Operation)
+        assert isinstance(p.tokens[0].tokens[0].tokens[0], sql.Function)
+        p = sqlparse.parse('foo(c1) over win1 as bar')[0]
+>       assert isinstance(p.tokens[0], sql.Identifier)
+E       AssertionError: assert False
+E        +  where False = isinstance(<Function 'foo(c1)' at 0x7FD30C6B5CC0>, <class 'sqlparse.sql.Identifier'>)
+E        +    where <class 'sqlparse.sql.Identifier'> = sql.Identifier
+
+tests/test_public_regression.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_public_regression.py::test_grouping_identifier_function - A...
+1 failed, 433 passed, 3 deselected in 0.69s

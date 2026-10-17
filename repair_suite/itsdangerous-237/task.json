@@ -1,0 +1,30 @@
+{
+  "title": "None salt breaks legacy signer/serializer behavior",
+  "issue": "Passing salt=None to Signer or Serializer breaks signing and serialization, although it worked in the previous release. Restore support for explicit None with legacy-compatible signatures: it should use the signer default, which can differ from the default when the serializer salt argument is omitted. Preserve explicit empty and nonempty string/bytes salts and key rotation. Public regression tests reproduce failures in both classes.",
+  "base_commit": "15a2e0d9b4bdaa38144c947a9aa04ffd49826700",
+  "reference_commit": "41ec419632aae3533ff12838044eeddd9cd1311f",
+  "baseline_failed": 2,
+  "baseline_passed": 421,
+  "public_test_count": 423,
+  "verification_test_count": 472,
+  "regression_markers": [
+    "test_signer_accepts_none_salt",
+    "test_serializer_accepts_none_salt"
+  ],
+  "public_test_origin": "Two harness-authored public reproductions based on issue #237; upstream fix has no test diff",
+  "id": "itsdangerous-237",
+  "issue_url": "https://github.com/pallets/itsdangerous/issues/237",
+  "repository": "https://github.com/pallets/itsdangerous",
+  "allowed_files": [
+    "src/itsdangerous/__init__.py",
+    "src/itsdangerous/_json.py",
+    "src/itsdangerous/encoding.py",
+    "src/itsdangerous/exc.py",
+    "src/itsdangerous/jws.py",
+    "src/itsdangerous/serializer.py",
+    "src/itsdangerous/signer.py",
+    "src/itsdangerous/timed.py",
+    "src/itsdangerous/url_safe.py"
+  ],
+  "supplemental_test_count": 49
+}

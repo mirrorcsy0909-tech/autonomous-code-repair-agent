@@ -1,0 +1,29 @@
+{
+  "title": "Bad signature date_signed has inconsistent type",
+  "issue": "For a timestamped signature with a modified payload or invalid signature, BadTimeSignature.date_signed can be an integer although callers expect a datetime. When a valid timestamp can be decoded, preserve the original signing time as a timezone-aware UTC datetime in error metadata. Keep the error type and payload behavior, and preserve None when a timestamp is missing or malformed. A public regression test reproduces the inconsistency.",
+  "base_commit": "b11475aa0e1534f1fe7736d56140d81e872b1f5f",
+  "reference_commit": "526b1ea02934f529606dcbf3c3340ab429dcde04",
+  "baseline_failed": 1,
+  "baseline_passed": 415,
+  "public_test_count": 416,
+  "verification_test_count": 446,
+  "regression_markers": [
+    "TestTimestampSigner::test_sig_error_date_signed"
+  ],
+  "public_test_origin": "Upstream test-only diff from reference commit",
+  "id": "itsdangerous-124",
+  "issue_url": "https://github.com/pallets/itsdangerous/issues/124",
+  "repository": "https://github.com/pallets/itsdangerous",
+  "allowed_files": [
+    "src/itsdangerous/__init__.py",
+    "src/itsdangerous/_json.py",
+    "src/itsdangerous/encoding.py",
+    "src/itsdangerous/exc.py",
+    "src/itsdangerous/jws.py",
+    "src/itsdangerous/serializer.py",
+    "src/itsdangerous/signer.py",
+    "src/itsdangerous/timed.py",
+    "src/itsdangerous/url_safe.py"
+  ],
+  "supplemental_test_count": 30
+}

@@ -1,0 +1,23 @@
+{
+  "LICENSE.rst": "63af09891b6be8ad1a4252ed43af0f4efba7fc948e228367bed7f3c5ae0b09d7",
+  "README.rst": "72e27bb9632a44912eb382c410dc2c20147589cf40bd410d6cec30578fd45f22",
+  "pytest.ini": "f7589d8cd441853dc94be7d76b17b350d279402af601a9d180bb701eed95802e",
+  "setup.cfg": "9c6460ca0171595eb3c2743a605acdf2b7495719978b5561038927859e70a7a5",
+  "setup.py": "8aa2813abd149d4452ece61db88878318dc440e5e7a9b6313d1a2d126b998a4d",
+  "src/itsdangerous/__init__.py": "23d7d1884d6ca9c2e0ec6fd25203124200d6496450c23e0119155850ce649e1f",
+  "src/itsdangerous/_json.py": "7112023263e279d748aba6cff8888c48cd1026025c0fe33d5a1b717a5548bda0",
+  "src/itsdangerous/encoding.py": "3c6192ed5dd7731c8f84665ff7ccee2124f1e504d5481167155d5a7489106ac8",
+  "src/itsdangerous/exc.py": "25307d061d4fdc5856c25b86c0be7f4a6cafd79f944f8f78c7ba0b3f372cdc95",
+  "src/itsdangerous/jws.py": "f497d3cce95c8c515302de972b35c6e321ca74b4a17f45045ddca26183edd1e4",
+  "src/itsdangerous/serializer.py": "4f2b497f85387aed9979611294fba2518e58756ac9f2d87a8271929cba63e97a",
+  "src/itsdangerous/signer.py": "3ef671ac4f78263a537c6c2ff804e00c82a37514b635420d38a2964b10890c62",
+  "src/itsdangerous/timed.py": "13ef04d25944516cdf406c09e4d6fe52ccc5cb44b4edf6e9c8d2023d8908d52b",
+  "src/itsdangerous/url_safe.py": "8b478133d0d4e12767aad41a63a2867a49a74fa5a0254a3bec3a9cce456190a3",
+  "tests/test_itsdangerous/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tests/test_itsdangerous/test_encoding.py": "af71dbee0825fc8ae947b6c789b05f2331afe60efae2aee5145727446385c3f0",
+  "tests/test_itsdangerous/test_jws.py": "33e74e12ad03202177d123a3b49a1006a6573ed2fd6593cde1926c4b2c7cb7bb",
+  "tests/test_itsdangerous/test_serializer.py": "665fcc96606fc69c3279bcbd604beb3856d357507fb3dc1c5ae750f5832be888",
+  "tests/test_itsdangerous/test_signer.py": "c13a752b11e6f4f90d281f32d57d335ae4ef2ed7141820277460cddbbb934d89",
+  "tests/test_itsdangerous/test_timed.py": "5ef9f460b13c97c9fe647e362c7822ca925855c15e63a43c213e7c1e7a390fb4",
+  "tests/test_itsdangerous/test_url_safe.py": "a2ff5413d767e80d0fa1a8f0b74cf6094c16faa0b866f9c56d421c9ff9fd2208"
+}

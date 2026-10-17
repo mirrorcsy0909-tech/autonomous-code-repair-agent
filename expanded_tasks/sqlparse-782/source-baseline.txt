@@ -1,0 +1,25 @@
+........................................................................ [ 16%]
+........................................................................ [ 32%]
+........................................................................ [ 49%]
+...................................F.................................... [ 65%]
+........................................................................ [ 82%]
+........................................................................ [ 98%]
+.....                                                                    [100%]
+=================================== FAILURES ===================================
+_________________ test_strip_ws_removes_trailing_ws_in_groups __________________
+
+    def test_strip_ws_removes_trailing_ws_in_groups():  # issue782
+        formatted = sqlparse.format('( where foo = bar  ) from',
+                                    strip_whitespace=True)
+        expected = '(where foo = bar) from'
+>       assert formatted == expected
+E       AssertionError: assert '(where foo = bar ) from' == '(where foo = bar) from'
+E         
+E         - (where foo = bar) from
+E         + (where foo = bar ) from
+E         ?                 +
+
+tests/test_public_regression.py:10: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_public_regression.py::test_strip_ws_removes_trailing_ws_in_groups
+1 failed, 436 passed, 3 deselected in 0.72s

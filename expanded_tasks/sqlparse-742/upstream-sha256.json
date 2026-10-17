@@ -1,0 +1,206 @@
+{
+  "LICENSE": {
+    "upstream_path": "LICENSE",
+    "sha256": "c1938235b80d39e93138eae89edc3af67e18ecbc40d266529fa57b2dce426310"
+  },
+  "README.rst": {
+    "upstream_path": "README.rst",
+    "sha256": "b93f8a11c874c7020c79d33789772ee2fd4e732b824f660188a4f427cb81aa30"
+  },
+  "pyproject.toml": {
+    "upstream_path": "pyproject.toml",
+    "sha256": "f240519d0090820782ade0da0342fa93ca7600afe80f8f830d168bacd2ab7c01"
+  },
+  "src/sqlparse/__init__.py": {
+    "upstream_path": "sqlparse/__init__.py",
+    "sha256": "3835288a70c3348e48d6e0fef21572beaa2fc6f600c77311b889db04ae8c0a04"
+  },
+  "src/sqlparse/__main__.py": {
+    "upstream_path": "sqlparse/__main__.py",
+    "sha256": "d6385514b1e566ce0d509a00b87bd040a5a0ca43d54dd81e13c5785c1e56433c"
+  },
+  "src/sqlparse/cli.py": {
+    "upstream_path": "sqlparse/cli.py",
+    "sha256": "f37807816d264d05c96eff88b6900465aabbfb696f5a28f49a0d9c5661baeca0"
+  },
+  "src/sqlparse/engine/__init__.py": {
+    "upstream_path": "sqlparse/engine/__init__.py",
+    "sha256": "8bd921d1448c8e4d5bc0a3c54e7e8ad0f282e791ceaaf9e4a311e2d6ded871c1"
+  },
+  "src/sqlparse/engine/filter_stack.py": {
+    "upstream_path": "sqlparse/engine/filter_stack.py",
+    "sha256": "70877dbe7cf42a9b618379637675f621debebf3d33a4a1e8315fc5a84604b185"
+  },
+  "src/sqlparse/engine/grouping.py": {
+    "upstream_path": "sqlparse/engine/grouping.py",
+    "sha256": "8a447508b75422d9943ffb965f4ebec9237ee755da091c5f3f4ea7a9cdfa23db"
+  },
+  "src/sqlparse/engine/statement_splitter.py": {
+    "upstream_path": "sqlparse/engine/statement_splitter.py",
+    "sha256": "fa29e31644c250a42d8762372b53e0b8590490f0a2025c64cd957ae3f08c9740"
+  },
+  "src/sqlparse/exceptions.py": {
+    "upstream_path": "sqlparse/exceptions.py",
+    "sha256": "43267d4ca4efce0726b90d5c264c408fd4a8030e0cd36f817f409250d58d0ca3"
+  },
+  "src/sqlparse/filters/__init__.py": {
+    "upstream_path": "sqlparse/filters/__init__.py",
+    "sha256": "3dc4bb0a494dfaaa667d8848778a064f251bedabb5034683fb6d513ff6ec7d06"
+  },
+  "src/sqlparse/filters/aligned_indent.py": {
+    "upstream_path": "sqlparse/filters/aligned_indent.py",
+    "sha256": "92f3794d5331a2fc97e9c0e79b117eb7e294cf6467cdb4357c8433748c586368"
+  },
+  "src/sqlparse/filters/others.py": {
+    "upstream_path": "sqlparse/filters/others.py",
+    "sha256": "c39316fc8107cb4ed387236b38177a4208cceee65cf25b3e68667dd21a4f2e65"
+  },
+  "src/sqlparse/filters/output.py": {
+    "upstream_path": "sqlparse/filters/output.py",
+    "sha256": "38c49a9523efab7b37fabdbaf138eff809ad8d33427e12dac96b5014ee68c951"
+  },
+  "src/sqlparse/filters/reindent.py": {
+    "upstream_path": "sqlparse/filters/reindent.py",
+    "sha256": "cb4f74b13ecc738e01c3d2272aa275bbf07351373cd56d0bd4df8154b569abca"
+  },
+  "src/sqlparse/filters/right_margin.py": {
+    "upstream_path": "sqlparse/filters/right_margin.py",
+    "sha256": "1e297af76241dd992230fa4f3d970c5224548c3a668458ae01152ee7f8a6ca6f"
+  },
+  "src/sqlparse/filters/tokens.py": {
+    "upstream_path": "sqlparse/filters/tokens.py",
+    "sha256": "099c03c0ccf339dab4aaf4d120889cef0e7d839e108701603363a9f7ddf666f9"
+  },
+  "src/sqlparse/formatter.py": {
+    "upstream_path": "sqlparse/formatter.py",
+    "sha256": "8960cf4210f826a6e20388d9a4ad90059cc4a95002c376d1c1d2e03c899ae251"
+  },
+  "src/sqlparse/keywords.py": {
+    "upstream_path": "sqlparse/keywords.py",
+    "sha256": "e8e0c3bf23ef469b7d433b72377f7a47ddb959dbe8be29052e1b360ea467d50a"
+  },
+  "src/sqlparse/lexer.py": {
+    "upstream_path": "sqlparse/lexer.py",
+    "sha256": "1aa79bbfae96bbc190950605fcd90ba086580ee7e189b0636091f344d1327df8"
+  },
+  "src/sqlparse/sql.py": {
+    "upstream_path": "sqlparse/sql.py",
+    "sha256": "5131228f4ef58888edb989edb31a9681b2860985b7005301db2241b81a0f8e4c"
+  },
+  "src/sqlparse/tokens.py": {
+    "upstream_path": "sqlparse/tokens.py",
+    "sha256": "83d8b064c2c66e84ae4505077d52d275d0b976fe373e4c493aee3eb6484cb34a"
+  },
+  "src/sqlparse/utils.py": {
+    "upstream_path": "sqlparse/utils.py",
+    "sha256": "54eda2712d2de2faa0f66a5925452b98fd11a9f22b0be4115a8460a047b2f6bf"
+  },
+  "tests/__init__.py": {
+    "upstream_path": "tests/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tests/conftest.py": {
+    "upstream_path": "tests/conftest.py",
+    "sha256": "78a520624361004ba4d9928e332b8df9e99279bff81d73aa735e58b8fc4d7f60"
+  },
+  "tests/files/_Make_DirEntry.sql": {
+    "upstream_path": "tests/files/_Make_DirEntry.sql",
+    "sha256": "477c6e434484000c6d34d8a1189b636c8595a906bbfdaead27110d33be192361"
+  },
+  "tests/files/begintag.sql": {
+    "upstream_path": "tests/files/begintag.sql",
+    "sha256": "eaf3ccbbe3e8a519ec00d95e875cf2063da21be757e85fdd15c3e11627ca350f"
+  },
+  "tests/files/begintag_2.sql": {
+    "upstream_path": "tests/files/begintag_2.sql",
+    "sha256": "d2deb7406afd541424617d618413d632b079bd650622a58d797df197f92eead2"
+  },
+  "tests/files/casewhen_procedure.sql": {
+    "upstream_path": "tests/files/casewhen_procedure.sql",
+    "sha256": "e2fffb5d1c32f750b652231ef6a8267797f91d902dd5fbd09cdafa1490d7a9f5"
+  },
+  "tests/files/dashcomment.sql": {
+    "upstream_path": "tests/files/dashcomment.sql",
+    "sha256": "77d2a0426573b95fea0f33ff300d29d8779d69f4d6aae52588d45832cc97a7f9"
+  },
+  "tests/files/encoding_gbk.sql": {
+    "upstream_path": "tests/files/encoding_gbk.sql",
+    "sha256": "b46e2aa2afd9973c1ecf6a1778b65c1b9c32eac1679d2dd733bff93bd8f71403"
+  },
+  "tests/files/encoding_utf8.sql": {
+    "upstream_path": "tests/files/encoding_utf8.sql",
+    "sha256": "abd229df1799a0e3cacf0262439ac446a6f9e1475a061a836d54f7bf71537dce"
+  },
+  "tests/files/function.sql": {
+    "upstream_path": "tests/files/function.sql",
+    "sha256": "f7ebcddcfa7366ac9ef1f2042e85980b9d1b709376504fbcac2fbaf31d500438"
+  },
+  "tests/files/function_psql.sql": {
+    "upstream_path": "tests/files/function_psql.sql",
+    "sha256": "374d3ad5a85b295656c80891414575d2e914b7d44441cf0c301c8ba7823ba6e2"
+  },
+  "tests/files/function_psql2.sql": {
+    "upstream_path": "tests/files/function_psql2.sql",
+    "sha256": "ca09b0d5ec71d6b14c3547bd1f50bbb43a3c41c67a82ea7da7925b4a360978eb"
+  },
+  "tests/files/function_psql3.sql": {
+    "upstream_path": "tests/files/function_psql3.sql",
+    "sha256": "ab11189f23be717c821e84b61a43d65be26898aab0ddc3312dd4c017460e8eb2"
+  },
+  "tests/files/function_psql4.sql": {
+    "upstream_path": "tests/files/function_psql4.sql",
+    "sha256": "855912b6749f5252ee5a9d0a701e3fd00e8436b50953d4cb21ad66e8bab836dc"
+  },
+  "tests/files/huge_select.sql": {
+    "upstream_path": "tests/files/huge_select.sql",
+    "sha256": "2833206b9559cbbac1bb0cb9c15fb66a593528ec47ae5b8168a56550903658e7"
+  },
+  "tests/files/mysql_handler.sql": {
+    "upstream_path": "tests/files/mysql_handler.sql",
+    "sha256": "70142d797ca7acf904e77aaec0587fd578f5ce134860fd81fbe98166fcd87157"
+  },
+  "tests/files/stream.sql": {
+    "upstream_path": "tests/files/stream.sql",
+    "sha256": "8d1fdb5798c601f75f6bbcc750d07544ea47452e78687151a39fd7eb3c4a64bb"
+  },
+  "tests/files/test_cp1251.sql": {
+    "upstream_path": "tests/files/test_cp1251.sql",
+    "sha256": "46f1d9cafe3b6f90ee79096e434f4509f5fa725f9c1b307e9180b8e2318a90b2"
+  },
+  "tests/test_cli.py": {
+    "upstream_path": "tests/test_cli.py",
+    "sha256": "a2b0735c9190e19bedb5a6d62cc1ec7f2d10735a0ba4395893c52cf2335470b2"
+  },
+  "tests/test_format.py": {
+    "upstream_path": "tests/test_format.py",
+    "sha256": "241980379f5b6b07992232e23c7774cba295b537e3a4a4600f88a518cf75e642"
+  },
+  "tests/test_grouping.py": {
+    "upstream_path": "tests/test_grouping.py",
+    "sha256": "dac344de41c6807b65fe476f1ca1f3b8ee939e54f30f71ac7c3ff03990d2c782"
+  },
+  "tests/test_keywords.py": {
+    "upstream_path": "tests/test_keywords.py",
+    "sha256": "149f6845de1ae252a0265cf3e91086c6259c131c0f7f7a7518ea628e7ad399a3"
+  },
+  "tests/test_parse.py": {
+    "upstream_path": "tests/test_parse.py",
+    "sha256": "40046dcfdebfd1e4b8b58467e97cf82c0bb310d8ef31092e7c7b1875fb1e5cdc"
+  },
+  "tests/test_regressions.py": {
+    "upstream_path": "tests/test_regressions.py",
+    "sha256": "0fed8a726ab89d851cd6a4265de4ab592427f4b823f1e65a3f62b779092c47b8"
+  },
+  "tests/test_split.py": {
+    "upstream_path": "tests/test_split.py",
+    "sha256": "c53981af68cefbb7d5af582e2546ee2943f5b7338c735b0c2aafa7c1826a8596"
+  },
+  "tests/test_tokenize.py": {
+    "upstream_path": "tests/test_tokenize.py",
+    "sha256": "647d40734c88f97802e2998c785f5c88e5540e69b7af9dbe7dedcde771105869"
+  },
+  "tests/test_utils.py": {
+    "upstream_path": "tests/test_utils.py",
+    "sha256": "49ae35e7607af5c8a9b83b6f14f47c30d8fcdc27da06a677fd92bef3e55ab998"
+  }
+}

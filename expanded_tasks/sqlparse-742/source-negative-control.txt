@@ -1,0 +1,160 @@
+FFFFFFFFF........F                                                       [100%]
+=================================== FAILURES ===================================
+______________ test_only_statement_delimiters_are_removed[-'x;y'] ______________
+
+literal = "'x;y'", tail = ''
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'x;y... 'SELECT 42;'] == ["SELECT 'x;y'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'x;y';" != "SELECT 'x;y'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+_____________ test_only_statement_delimiters_are_removed[-'a  b'] ______________
+
+literal = "'a  b'", tail = ''
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'a  ... 'SELECT 42;'] == ["SELECT 'a  b'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'a  b';" != "SELECT 'a  b'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+___________ test_only_statement_delimiters_are_removed[-'BEGIN;END'] ___________
+
+literal = "'BEGIN;END'", tail = ''
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'BEG... 'SELECT 42;'] == ["SELECT 'BEG..., 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'BEGIN;END';" != "SELECT 'BEGIN;END'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+_____________ test_only_statement_delimiters_are_removed[ -'x;y'] ______________
+
+literal = "'x;y'", tail = ' '
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'x;y... 'SELECT 42;'] == ["SELECT 'x;y'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'x;y';" != "SELECT 'x;y'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+_____________ test_only_statement_delimiters_are_removed[ -'a  b'] _____________
+
+literal = "'a  b'", tail = ' '
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'a  ... 'SELECT 42;'] == ["SELECT 'a  b'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'a  b';" != "SELECT 'a  b'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+__________ test_only_statement_delimiters_are_removed[ -'BEGIN;END'] ___________
+
+literal = "'BEGIN;END'", tail = ' '
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'BEG... 'SELECT 42;'] == ["SELECT 'BEG..., 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'BEGIN;END';" != "SELECT 'BEGIN;END'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+_____________ test_only_statement_delimiters_are_removed[\n-'x;y'] _____________
+
+literal = "'x;y'", tail = '\n'
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'x;y... 'SELECT 42;'] == ["SELECT 'x;y'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'x;y';" != "SELECT 'x;y'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+____________ test_only_statement_delimiters_are_removed[\n-'a  b'] _____________
+
+literal = "'a  b'", tail = '\n'
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'a  ... 'SELECT 42;'] == ["SELECT 'a  b'", 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'a  b';" != "SELECT 'a  b'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+__________ test_only_statement_delimiters_are_removed[\n-'BEGIN;END'] __________
+
+literal = "'BEGIN;END'", tail = '\n'
+
+    @pytest.mark.parametrize('literal', ["'x;y'", "'a  b'", "'BEGIN;END'"])
+    @pytest.mark.parametrize('tail', ['', ' ', '\n'])
+    def test_only_statement_delimiters_are_removed(literal, tail):
+        query = f'SELECT {literal}; SELECT 42;{tail}'
+>       assert sqlparse.split(query, strip_semicolon=True) == [f'SELECT {literal}', 'SELECT 42']
+E       assert ["SELECT 'BEG... 'SELECT 42;'] == ["SELECT 'BEG..., 'SELECT 42']
+E         
+E         At index 0 diff: "SELECT 'BEGIN;END';" != "SELECT 'BEGIN;END'"
+E         Use -v to get more diff
+
+tests/test_supplemental.py:10: AssertionError
+________________ test_procedure_inner_delimiters_are_preserved _________________
+
+    def test_procedure_inner_delimiters_are_preserved():
+        query = 'CREATE PROCEDURE answer() BEGIN SELECT 1; SELECT 2; END;'
+>       assert sqlparse.split(query, strip_semicolon=True) == [query[:-1]]
+E       AssertionError: assert ['CREATE PROC...LECT 2; END;'] == ['CREATE PROC...ELECT 2; END']
+E         
+E         At index 0 diff: 'CREATE PROCEDURE answer() BEGIN SELECT 1; SELECT 2; END;' != 'CREATE PROCEDURE answer() BEGIN SELECT 1; SELECT 2; END'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[-'x;y']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[-'a  b']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[-'BEGIN;END']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[ -'x;y']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[ -'a  b']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[ -'BEGIN;END']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[\n-'x;y']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[\n-'a  b']
+FAILED tests/test_supplemental.py::test_only_statement_delimiters_are_removed[\n-'BEGIN;END']
+FAILED tests/test_supplemental.py::test_procedure_inner_delimiters_are_preserved
+10 failed, 8 passed in 0.05s

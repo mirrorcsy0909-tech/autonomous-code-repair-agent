@@ -1,0 +1,84 @@
+diff --git a/src/sqlparse/__init__.py b/src/sqlparse/__init__.py
+index cfd4e2f..b80b2d6 100644
+--- a/src/sqlparse/__init__.py
++++ b/src/sqlparse/__init__.py
+@@ -59,12 +59,14 @@ def format(sql, encoding=None, **options):
+     return ''.join(stack.run(sql, encoding))
+ 
+ 
+-def split(sql, encoding=None):
++def split(sql, encoding=None, strip_semicolon=False):
+     """Split *sql* into single statements.
+ 
+     :param sql: A string containing one or more SQL statements.
+     :param encoding: The encoding of the statement (optional).
++    :param strip_semicolon: If True, remove trainling semicolons
++        (default: False).
+     :returns: A list of strings.
+     """
+-    stack = engine.FilterStack()
++    stack = engine.FilterStack(strip_semicolon=strip_semicolon)
+     return [str(stmt).strip() for stmt in stack.run(sql, encoding)]
+diff --git a/src/sqlparse/engine/filter_stack.py b/src/sqlparse/engine/filter_stack.py
+index 9665a22..3feba37 100644
+--- a/src/sqlparse/engine/filter_stack.py
++++ b/src/sqlparse/engine/filter_stack.py
+@@ -10,14 +10,17 @@
+ from sqlparse import lexer
+ from sqlparse.engine import grouping
+ from sqlparse.engine.statement_splitter import StatementSplitter
++from sqlparse.filters import StripTrailingSemicolonFilter
+ 
+ 
+ class FilterStack:
+-    def __init__(self):
++    def __init__(self, strip_semicolon=False):
+         self.preprocess = []
+         self.stmtprocess = []
+         self.postprocess = []
+         self._grouping = False
++        if strip_semicolon:
++            self.stmtprocess.append(StripTrailingSemicolonFilter())
+ 
+     def enable_grouping(self):
+         self._grouping = True
+diff --git a/src/sqlparse/filters/__init__.py b/src/sqlparse/filters/__init__.py
+index 5bd6b32..0616946 100644
+--- a/src/sqlparse/filters/__init__.py
++++ b/src/sqlparse/filters/__init__.py
+@@ -8,6 +8,7 @@
+ from sqlparse.filters.others import SerializerUnicode
+ from sqlparse.filters.others import StripCommentsFilter
+ from sqlparse.filters.others import StripWhitespaceFilter
++from sqlparse.filters.others import StripTrailingSemicolonFilter
+ from sqlparse.filters.others import SpacesAroundOperatorsFilter
+ 
+ from sqlparse.filters.output import OutputPHPFilter
+@@ -25,6 +26,7 @@ __all__ = [
+     'SerializerUnicode',
+     'StripCommentsFilter',
+     'StripWhitespaceFilter',
++    'StripTrailingSemicolonFilter',
+     'SpacesAroundOperatorsFilter',
+ 
+     'OutputPHPFilter',
+diff --git a/src/sqlparse/filters/others.py b/src/sqlparse/filters/others.py
+index 9e617c3..da7c0e7 100644
+--- a/src/sqlparse/filters/others.py
++++ b/src/sqlparse/filters/others.py
+@@ -126,6 +126,15 @@ class SpacesAroundOperatorsFilter:
+         return stmt
+ 
+ 
++class StripTrailingSemicolonFilter:
++
++    def process(self, stmt):
++        while stmt.tokens and (stmt.tokens[-1].is_whitespace
++                               or stmt.tokens[-1].value == ';'):
++            stmt.tokens.pop()
++        return stmt
++
++
+ # ---------------------------
+ # postprocess
+ 

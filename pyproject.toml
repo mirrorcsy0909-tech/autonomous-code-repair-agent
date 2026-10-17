@@ -1,0 +1,14 @@
+[project]
+name = "autonomous-code-repair-agent"
+version = "0.1.0"
+description = "OpenHands code repair runner with external patch verification"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "openhands-sdk==1.53.0",
+  "openhands-tools==1.53.0",
+  "python-dotenv>=1.2,<2",
+  "pytest>=8,<10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

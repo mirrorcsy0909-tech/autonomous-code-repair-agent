@@ -1,0 +1,99 @@
+{
+  "id": "sqlparse-742",
+  "title": "Optional trailing semicolon removal",
+  "repository": "https://github.com/andialbrecht/sqlparse",
+  "issue_url": "https://github.com/andialbrecht/sqlparse/issues/742",
+  "base_commit": "6eca7aeb407235d7053508a49e2262a395d56b67",
+  "reference_commit": "115e208bd340f175b23964524670418fe6f72c31",
+  "issue": "The split API needs an optional strip_semicolon=True mode that removes a trailing statement delimiter from each returned statement. Preserve internal semicolons in procedures and string literals, keep the default behavior unchanged, and handle whitespace and inputs without a delimiter. This is a historical feature/compatibility issue, not an existing-mode bug.",
+  "allowed_files": [
+    "src/sqlparse/__init__.py",
+    "src/sqlparse/__main__.py",
+    "src/sqlparse/cli.py",
+    "src/sqlparse/engine/__init__.py",
+    "src/sqlparse/engine/filter_stack.py",
+    "src/sqlparse/engine/grouping.py",
+    "src/sqlparse/engine/statement_splitter.py",
+    "src/sqlparse/exceptions.py",
+    "src/sqlparse/filters/__init__.py",
+    "src/sqlparse/filters/aligned_indent.py",
+    "src/sqlparse/filters/others.py",
+    "src/sqlparse/filters/output.py",
+    "src/sqlparse/filters/reindent.py",
+    "src/sqlparse/filters/right_margin.py",
+    "src/sqlparse/filters/tokens.py",
+    "src/sqlparse/formatter.py",
+    "src/sqlparse/keywords.py",
+    "src/sqlparse/lexer.py",
+    "src/sqlparse/sql.py",
+    "src/sqlparse/tokens.py",
+    "src/sqlparse/utils.py"
+  ],
+  "baseline_failed": 6,
+  "baseline_passed": 411,
+  "public_test_count": 417,
+  "verification_test_count": 435,
+  "supplemental_test_count": 18,
+  "regression_markers": [
+    "test_split_strip_semicolon"
+  ],
+  "image_tag": "code-repair-python:expanded-v1",
+  "harness_id": "expanded-historical-v1",
+  "context_files": [
+    "src/sqlparse/__init__.py",
+    "src/sqlparse/__main__.py",
+    "src/sqlparse/cli.py",
+    "src/sqlparse/engine/__init__.py",
+    "src/sqlparse/engine/filter_stack.py",
+    "src/sqlparse/engine/grouping.py",
+    "src/sqlparse/engine/statement_splitter.py",
+    "src/sqlparse/exceptions.py",
+    "src/sqlparse/filters/__init__.py",
+    "src/sqlparse/filters/aligned_indent.py",
+    "src/sqlparse/filters/others.py",
+    "src/sqlparse/filters/output.py",
+    "src/sqlparse/filters/reindent.py",
+    "src/sqlparse/filters/right_margin.py",
+    "src/sqlparse/filters/tokens.py",
+    "src/sqlparse/formatter.py",
+    "src/sqlparse/keywords.py",
+    "src/sqlparse/lexer.py",
+    "src/sqlparse/sql.py",
+    "src/sqlparse/tokens.py",
+    "src/sqlparse/utils.py",
+    "pytest.ini",
+    "tests/conftest.py",
+    "tests/test_public_regression.py",
+    "tests/files/mysql_handler.sql"
+  ],
+  "test_scope": "Historical non-CLI tests excluding 3 existing xfail-marked tests, plus extracted upstream regressions; exact 3 deselections enforced. Not a full-project test claim.",
+  "public_regression_provenance": [
+    {
+      "function": "test_split_strip_semicolon",
+      "upstream_path": "tests/test_split.py",
+      "sha256": "ff9891f4c6f9fe20f07887caab605a392f8150071eeefce48c97cf07a9f7496a"
+    },
+    {
+      "function": "test_split_strip_semicolon_procedure",
+      "upstream_path": "tests/test_split.py",
+      "sha256": "0a7df3ad21d17d652b9e21d045a6f57fc17830881cdf15822157ee678013aa42"
+    }
+  ],
+  "source_layout_note": "Unchanged upstream sqlparse/ bytes placed under src/sqlparse/ for the existing PYTHONPATH layout.",
+  "context_scope_note": "One-shot receives all historical source modules and extracted public regressions, not every upstream test. All source modules fit the existing 30000-character tool limit.",
+  "baseline_deselected": 3,
+  "verification_deselected": 3,
+  "image_build_command": "uv run python expanded_agent.py build",
+  "task_kind": "feature_compatibility",
+  "known_excluded_tests": [
+    "tests/test_regressions.py::test_issue484_comments_and_newlines",
+    "tests/test_format.py::TestOutputFormat::test_python_multiple_statements_with_formatting",
+    "tests/test_format.py::test_format_right_margin"
+  ],
+  "reference_changed_source_files": [
+    "src/sqlparse/__init__.py",
+    "src/sqlparse/engine/filter_stack.py",
+    "src/sqlparse/filters/__init__.py",
+    "src/sqlparse/filters/others.py"
+  ]
+}

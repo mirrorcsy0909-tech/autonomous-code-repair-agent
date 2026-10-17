@@ -1,0 +1,37 @@
+[
+  {
+    "task_id": "sqlparse-701",
+    "mutation": "Disable one essential part of the reference behavior",
+    "source": "src/sqlparse/engine/grouping.py",
+    "exit_code": 1,
+    "summary": "16 failed, 3 passed in 0.08s"
+  },
+  {
+    "task_id": "sqlparse-742",
+    "mutation": "Disable one essential part of the reference behavior",
+    "source": "src/sqlparse/engine/filter_stack.py",
+    "exit_code": 1,
+    "summary": "10 failed, 8 passed in 0.05s"
+  },
+  {
+    "task_id": "sqlparse-745",
+    "mutation": "Disable one essential part of the reference behavior",
+    "source": "src/sqlparse/engine/grouping.py",
+    "exit_code": 1,
+    "summary": "18 failed, 2 passed in 0.07s"
+  },
+  {
+    "task_id": "sqlparse-782",
+    "mutation": "Disable one essential part of the reference behavior",
+    "source": "src/sqlparse/filters/others.py",
+    "exit_code": 1,
+    "summary": "12 failed, 3 passed in 0.06s"
+  },
+  {
+    "task_id": "sqlparse-784",
+    "mutation": "Disable one essential part of the reference behavior",
+    "source": "src/sqlparse/engine/statement_splitter.py",
+    "exit_code": 1,
+    "summary": "12 failed, 6 passed in 0.07s"
+  }
+]

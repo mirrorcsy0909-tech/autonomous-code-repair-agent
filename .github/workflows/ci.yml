@@ -1,0 +1,63 @@
+name: Harness checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      docker_smoke:
+        description: Build task images and run trusted baseline/reference smoke checks
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  LITELLM_LOCAL_MODEL_COST_MAP: 'True'
+  OPENHANDS_SUPPRESS_BANNER: '1'
+
+jobs:
+  offline:
+    name: Offline harness / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: '0.12.23'
+          python-version: '3.12'
+          enable-cache: true
+      - name: Install locked dependencies
+        run: uv sync --frozen
+      - name: Check setup and all trusted fixture hashes
+        run: uv run --frozen python project.py doctor --catalog all --offline
+      - name: Run explicit harness checks
+        run: uv run --frozen python project.py check
+
+  docker-reference-smoke:
+    name: Optional Docker reference smoke
+    if: github.event_name == 'workflow_dispatch' && inputs.docker_smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: '0.12.23'
+          python-version: '3.12'
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Build the three task images
+        run: uv run --frozen python project.py build --catalog all
+      - name: Reproduce failures and verify trusted reference fixes
+        run: uv run --frozen python project.py smoke --catalog all --id ci-reference

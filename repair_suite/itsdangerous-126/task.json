@@ -1,0 +1,29 @@
+{
+  "title": "Future-dated signatures are accepted",
+  "issue": "A timestamped signature may be accepted when its signing time is later than the verification time, even when max_age is set. Fix the validation so future-dated signatures are rejected with SignatureExpired when age validation is requested. Preserve existing valid and expired signature behavior and the behavior when max_age is omitted. The repository includes a failing regression test.",
+  "base_commit": "1a9b8d1f9968eb248bda69f39d373a6330b692ba",
+  "reference_commit": "c30678d19e37011890e2374cca04f7789e101793",
+  "baseline_failed": 1,
+  "baseline_passed": 414,
+  "public_test_count": 415,
+  "verification_test_count": 468,
+  "regression_markers": [
+    "TestTimestampSigner::test_future_age"
+  ],
+  "public_test_origin": "Upstream regression test from reference commit",
+  "id": "itsdangerous-126",
+  "issue_url": "https://github.com/pallets/itsdangerous/issues/126",
+  "repository": "https://github.com/pallets/itsdangerous",
+  "allowed_files": [
+    "src/itsdangerous/__init__.py",
+    "src/itsdangerous/_json.py",
+    "src/itsdangerous/encoding.py",
+    "src/itsdangerous/exc.py",
+    "src/itsdangerous/jws.py",
+    "src/itsdangerous/serializer.py",
+    "src/itsdangerous/signer.py",
+    "src/itsdangerous/timed.py",
+    "src/itsdangerous/url_safe.py"
+  ],
+  "supplemental_test_count": 53
+}

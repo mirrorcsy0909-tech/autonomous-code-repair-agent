@@ -1,0 +1,22 @@
+........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 49%]
+...................................F.................................... [ 66%]
+........................................................................ [ 82%]
+........................................................................ [ 99%]
+....                                                                     [100%]
+=================================== FAILURES ===================================
+______________________ test_split_multiple_case_in_begin _______________________
+
+load_file = <function load_file.<locals>.make_load_file at 0x7f960db32160>
+
+    def test_split_multiple_case_in_begin(load_file):  # issue784
+        stmts = sqlparse.split(load_file('multiple_case_in_begin.sql'))
+>       assert len(stmts) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len(['CREATE TRIGGER mytrig\nAFTER UPDATE OF vvv ON mytable\nBEGIN\n    UPDATE aa\n        SET mycola = (CASE WHEN (A=1) THEN 2 END);\n    UPDATE bb\n        SET mycolb = (CASE WHEN (B=1) THEN 5 END);', 'END;'])
+
+tests/test_public_regression.py:8: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_public_regression.py::test_split_multiple_case_in_begin - A...
+1 failed, 435 passed, 3 deselected in 0.74s

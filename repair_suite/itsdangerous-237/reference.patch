@@ -1,0 +1,54 @@
+diff --git a/src/itsdangerous/serializer.py b/src/itsdangerous/serializer.py
+index 12b7b26..36a73fb 100644
+--- a/src/itsdangerous/serializer.py
++++ b/src/itsdangerous/serializer.py
+@@ -89,7 +89,7 @@ class Serializer:
+     def __init__(
+         self,
+         secret_key: _t_secret_key,
+-        salt: _t_str_bytes = b"itsdangerous",
++        salt: _t_opt_str_bytes = b"itsdangerous",
+         serializer: _t.Any = None,
+         serializer_kwargs: _t_opt_kwargs = None,
+         signer: _t.Optional[_t_signer] = None,
+@@ -102,7 +102,12 @@ class Serializer:
+         #: This allows a key rotation system to keep a list of allowed
+         #: keys and remove expired ones.
+         self.secret_keys: _t.List[bytes] = _make_keys_list(secret_key)
+-        self.salt: bytes = want_bytes(salt)
++
++        if salt is not None:
++            salt = want_bytes(salt)
++            # if salt is None then the signer's default is used
++
++        self.salt = salt
+ 
+         if serializer is None:
+             serializer = self.default_serializer
+diff --git a/src/itsdangerous/signer.py b/src/itsdangerous/signer.py
+index 7e2be7d..aa12005 100644
+--- a/src/itsdangerous/signer.py
++++ b/src/itsdangerous/signer.py
+@@ -120,7 +120,7 @@ class Signer:
+     def __init__(
+         self,
+         secret_key: _t_secret_key,
+-        salt: _t_str_bytes = b"itsdangerous.Signer",
++        salt: _t_opt_str_bytes = b"itsdangerous.Signer",
+         sep: _t_str_bytes = b".",
+         key_derivation: _t.Optional[str] = None,
+         digest_method: _t.Optional[_t.Any] = None,
+@@ -141,7 +141,12 @@ class Signer:
+                 " digits, and '-_=' must not be used."
+             )
+ 
+-        self.salt: bytes = want_bytes(salt)
++        if salt is not None:
++            salt = want_bytes(salt)
++        else:
++            salt = b"itsdangerous.Signer"
++
++        self.salt = salt
+ 
+         if key_derivation is None:
+             key_derivation = self.default_key_derivation

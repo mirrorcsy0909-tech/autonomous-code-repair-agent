@@ -1,0 +1,451 @@
+FFFFFFFFFFFFFFFFFF..                                                     [100%]
+=================================== FAILURES ===================================
+_________________ test_ordering_at_nested_depth[1-asc-amount] __________________
+
+name = 'amount', ordering = 'asc', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount asc'
+E         
+E         - amount asc
+E         ?       ----
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[1-asc-t.amount] _________________
+
+name = 't.amount', ordering = 'asc', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount asc'
+E         
+E         - t.amount asc
+E         ?         ----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[1-asc-"amount"] _________________
+
+name = '"amount"', ordering = 'asc', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" asc'
+E         
+E         - "amount" asc
+E         ?         ----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+_________________ test_ordering_at_nested_depth[1-DESC-amount] _________________
+
+name = 'amount', ordering = 'DESC', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount DESC'
+E         
+E         - amount DESC
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[1-DESC-t.amount] ________________
+
+name = 't.amount', ordering = 'DESC', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount DESC'
+E         
+E         - t.amount DESC
+E         ?         -----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[1-DESC-"amount"] ________________
+
+name = '"amount"', ordering = 'DESC', depth = 1
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" DESC'
+E         
+E         - "amount" DESC
+E         ?         -----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+_________________ test_ordering_at_nested_depth[2-asc-amount] __________________
+
+name = 'amount', ordering = 'asc', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount asc'
+E         
+E         - amount asc
+E         ?       ----
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[2-asc-t.amount] _________________
+
+name = 't.amount', ordering = 'asc', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount asc'
+E         
+E         - t.amount asc
+E         ?         ----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[2-asc-"amount"] _________________
+
+name = '"amount"', ordering = 'asc', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" asc'
+E         
+E         - "amount" asc
+E         ?         ----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+_________________ test_ordering_at_nested_depth[2-DESC-amount] _________________
+
+name = 'amount', ordering = 'DESC', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount DESC'
+E         
+E         - amount DESC
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[2-DESC-t.amount] ________________
+
+name = 't.amount', ordering = 'DESC', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount DESC'
+E         
+E         - t.amount DESC
+E         ?         -----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[2-DESC-"amount"] ________________
+
+name = '"amount"', ordering = 'DESC', depth = 2
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" DESC'
+E         
+E         - "amount" DESC
+E         ?         -----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+_________________ test_ordering_at_nested_depth[3-asc-amount] __________________
+
+name = 'amount', ordering = 'asc', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount asc'
+E         
+E         - amount asc
+E         ?       ----
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[3-asc-t.amount] _________________
+
+name = 't.amount', ordering = 'asc', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount asc'
+E         
+E         - t.amount asc
+E         ?         ----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[3-asc-"amount"] _________________
+
+name = '"amount"', ordering = 'asc', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" asc'
+E         
+E         - "amount" asc
+E         ?         ----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+_________________ test_ordering_at_nested_depth[3-DESC-amount] _________________
+
+name = 'amount', ordering = 'DESC', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 'amount' == 'amount DESC'
+E         
+E         - amount DESC
+E         + amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[3-DESC-t.amount] ________________
+
+name = 't.amount', ordering = 'DESC', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       AssertionError: assert 't.amount' == 't.amount DESC'
+E         
+E         - t.amount DESC
+E         ?         -----
+E         + t.amount
+
+tests/test_supplemental.py:19: AssertionError
+________________ test_ordering_at_nested_depth[3-DESC-"amount"] ________________
+
+name = '"amount"', ordering = 'DESC', depth = 3
+
+    @pytest.mark.parametrize('name', ['amount', 't.amount', '"amount"'])
+    @pytest.mark.parametrize('ordering', ['asc', 'DESC'])
+    @pytest.mark.parametrize('depth', [1, 2, 3])
+    def test_ordering_at_nested_depth(name, ordering, depth):
+        expression = f'{name} {ordering}'
+        query = '(' * depth + expression + ')' * depth
+        node = sqlparse.parse(query)[0]
+        for unused in range(depth):
+            node = node.token_next_by(i=sql.Parenthesis)[1]
+            assert node is not None
+        ordered = node.token_next_by(i=sql.Identifier)[1]
+        assert ordered is not None
+>       assert str(ordered) == expression
+E       assert '"amount"' == '"amount" DESC'
+E         
+E         - "amount" DESC
+E         ?         -----
+E         + "amount"
+
+tests/test_supplemental.py:19: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-asc-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-asc-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-asc-"amount"]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-DESC-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-DESC-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[1-DESC-"amount"]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-asc-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-asc-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-asc-"amount"]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-DESC-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-DESC-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[2-DESC-"amount"]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-asc-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-asc-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-asc-"amount"]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-DESC-amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-DESC-t.amount]
+FAILED tests/test_supplemental.py::test_ordering_at_nested_depth[3-DESC-"amount"]
+18 failed, 2 passed in 0.07s

@@ -1,0 +1,374 @@
+FFFFFFFFFFFFFFFF...                                                      [100%]
+=================================== FAILURES ===================================
+________________ test_window_belongs_to_function[over- -win_a] _________________
+
+window = 'win_a', spacing = ' ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) over win_a'
+E         
+E         - foo(amount) over win_a
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[over- -(partition by dept)] __________
+
+window = '(partition by dept)', spacing = ' ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...tion by dept)'
+E         
+E         - foo(amount) over (partition by dept)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+__________ test_window_belongs_to_function[over- -(order by created)] __________
+
+window = '(order by created)', spacing = ' ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount) over (order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_ test_window_belongs_to_function[over- -(partition by dept order by created)] _
+
+window = '(partition by dept order by created)', spacing = ' ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount) over (partition by dept order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+________________ test_window_belongs_to_function[over-  -win_a] ________________
+
+window = 'win_a', spacing = '  ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount)  over  win_a'
+E         
+E         - foo(amount)  over  win_a
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[over-  -(partition by dept)] _________
+
+window = '(partition by dept)', spacing = '  ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...tion by dept)'
+E         
+E         - foo(amount)  over  (partition by dept)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[over-  -(order by created)] __________
+
+window = '(order by created)', spacing = '  ', keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount)  over  (order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_ test_window_belongs_to_function[over-  -(partition by dept order by created)] _
+
+window = '(partition by dept order by created)', spacing = '  '
+keyword = 'over'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount)  over  (partition by dept order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+________________ test_window_belongs_to_function[OVER- -win_a] _________________
+
+window = 'win_a', spacing = ' ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) OVER win_a'
+E         
+E         - foo(amount) OVER win_a
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[OVER- -(partition by dept)] __________
+
+window = '(partition by dept)', spacing = ' ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...tion by dept)'
+E         
+E         - foo(amount) OVER (partition by dept)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+__________ test_window_belongs_to_function[OVER- -(order by created)] __________
+
+window = '(order by created)', spacing = ' ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount) OVER (order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_ test_window_belongs_to_function[OVER- -(partition by dept order by created)] _
+
+window = '(partition by dept order by created)', spacing = ' ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount) OVER (partition by dept order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+________________ test_window_belongs_to_function[OVER-  -win_a] ________________
+
+window = 'win_a', spacing = '  ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount)  OVER  win_a'
+E         
+E         - foo(amount)  OVER  win_a
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[OVER-  -(partition by dept)] _________
+
+window = '(partition by dept)', spacing = '  ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...tion by dept)'
+E         
+E         - foo(amount)  OVER  (partition by dept)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_________ test_window_belongs_to_function[OVER-  -(order by created)] __________
+
+window = '(order by created)', spacing = '  ', keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount)  OVER  (order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+_ test_window_belongs_to_function[OVER-  -(partition by dept order by created)] _
+
+window = '(partition by dept order by created)', spacing = '  '
+keyword = 'OVER'
+
+    @pytest.mark.parametrize('window', ['win_a', '(partition by dept)', '(order by created)',
+                                       '(partition by dept order by created)'])
+    @pytest.mark.parametrize('spacing', [' ', '  '])
+    @pytest.mark.parametrize('keyword', ['over', 'OVER'])
+    def test_window_belongs_to_function(window, spacing, keyword):
+        expression = f'foo(amount){spacing}{keyword}{spacing}{window}'
+        query = f'SELECT {expression} AS metric FROM records'
+        statement = sqlparse.parse(query)[0]
+        functions = list(functions_in(statement))
+        assert len(functions) == 1
+        function = functions[0]
+>       assert str(function) == expression
+E       AssertionError: assert 'foo(amount)' == 'foo(amount) ...r by created)'
+E         
+E         - foo(amount)  OVER  (partition by dept order by created)
+E         + foo(amount)
+
+tests/test_supplemental.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over- -win_a]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over- -(partition by dept)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over- -(order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over- -(partition by dept order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over-  -win_a]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over-  -(partition by dept)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over-  -(order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[over-  -(partition by dept order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER- -win_a]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER- -(partition by dept)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER- -(order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER- -(partition by dept order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER-  -win_a]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER-  -(partition by dept)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER-  -(order by created)]
+FAILED tests/test_supplemental.py::test_window_belongs_to_function[OVER-  -(partition by dept order by created)]
+16 failed, 3 passed in 0.08s

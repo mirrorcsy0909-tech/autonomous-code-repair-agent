@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "dotenv-256",
+    "bad_variant": "environment fallback removed",
+    "result": "3 failed, 17 passed in 0.03s",
+    "exit_code": 1
+  },
+  {
+    "task_id": "dotenv-361",
+    "bad_variant": "unconditional newline before every append",
+    "result": "6 failed, 15 passed in 0.08s",
+    "exit_code": 1
+  }
+]

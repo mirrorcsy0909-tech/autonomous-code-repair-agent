@@ -1,0 +1,8 @@
+{
+  "task_id": "itsdangerous-124",
+  "repository": "https://github.com/pallets/itsdangerous",
+  "issue_url": "https://github.com/pallets/itsdangerous/issues/124",
+  "base_commit": "b11475aa0e1534f1fe7736d56140d81e872b1f5f",
+  "reference_commit": "526b1ea02934f529606dcbf3c3340ab429dcde04",
+  "upstream_test_patch": true
+}

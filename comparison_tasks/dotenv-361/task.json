@@ -1,0 +1,47 @@
+{
+  "id": "dotenv-361",
+  "title": "Appending a key without a trailing newline",
+  "repository": "https://github.com/theskumar/python-dotenv",
+  "issue_url": "https://github.com/theskumar/python-dotenv/pull/361",
+  "base_commit": "fc138ce8a430b758f4f2c89bc8104f259e2cba38",
+  "reference_commit": "45848bb780c26ef0adf7898656f7d3d3f4e2d8ae",
+  "issue": "When set_key appends a new variable to an existing .env file with no trailing newline, the new entry is concatenated with the previous line. Ensure the new entry is separated while preserving prior text, avoiding extra blank lines when the file already ends in a newline, and retaining replacement, quote-mode and export behavior. A selected upstream public test reproduces the failure.",
+  "allowed_files": [
+    "src/dotenv/__init__.py",
+    "src/dotenv/cli.py",
+    "src/dotenv/ipython.py",
+    "src/dotenv/main.py",
+    "src/dotenv/parser.py",
+    "src/dotenv/variables.py",
+    "src/dotenv/version.py"
+  ],
+  "baseline_failed": 1,
+  "baseline_passed": 62,
+  "public_test_count": 63,
+  "verification_test_count": 84,
+  "supplemental_test_count": 21,
+  "regression_markers": [
+    "test_set_key",
+    "expected12"
+  ],
+  "image_tag": "code-repair-python:dotenv-comparison-v1",
+  "harness_id": "paired-workflows-v1",
+  "context_files": [
+    "src/dotenv/__init__.py",
+    "src/dotenv/cli.py",
+    "src/dotenv/ipython.py",
+    "src/dotenv/main.py",
+    "src/dotenv/parser.py",
+    "src/dotenv/variables.py",
+    "src/dotenv/version.py",
+    "pytest.ini",
+    "tests/conftest.py",
+    "tests/test_public_regression.py",
+    "tests/test_parser.py",
+    "tests/test_utils.py",
+    "tests/test_variables.py"
+  ],
+  "test_scope": "Selected upstream parser/helpers plus one extracted upstream regression function; full project suite is not collected.",
+  "extracted_upstream_function": "test_set_key",
+  "extracted_snippet_sha256": "3ce292ef844dc88127bb4261d2a88e9ba7b6ce41801ff60cff59ff0f10a01bac"
+}

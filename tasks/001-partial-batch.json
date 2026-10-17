@@ -1,0 +1,6 @@
+{
+  "id": "001-partial-batch",
+  "fixture": "batch-service",
+  "allowed_files": ["batching.py"],
+  "issue": "The downstream API receives fewer records than we send. make_batches drops records when the list is smaller than a batch or has a partial final batch. Fix the implementation. Keep record order, include each input record exactly once, preserve empty-input and invalid-size behavior, and do not mutate the input. Do not modify tests or project configuration."
+}

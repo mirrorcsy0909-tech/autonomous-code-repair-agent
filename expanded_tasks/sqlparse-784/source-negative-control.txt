@@ -1,0 +1,292 @@
+.FFF.FFF.FFF.FFF..                                                       [100%]
+=================================== FAILURES ===================================
+________ test_sequential_case_does_not_close_outer_block[False-True-2] _________
+
+count = 2, uppercase = True, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG...ND);', 'END;'] == ['CREATE TRIG... END);\nEND;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nEND;'
+E         Left contains one more item: 'END;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[False-True-3] _________
+
+count = 3, uppercase = True, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG...ND);', 'END;'] == ['CREATE TRIG... END);\nEND;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nUPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);\nEND;'
+E         Left contains 2 more items, first extra item: 'UPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[False-True-4] _________
+
+count = 4, uppercase = True, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG...ND);', 'END;'] == ['CREATE TRIG... END);\nEND;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nUPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);\nUPDATE t SET c3 = (CASE WHEN (v=3) THEN 4 END);\nEND;'
+E         Left contains 3 more items, first extra item: 'UPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[False-False-2] ________
+
+count = 2, uppercase = False, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig...nd);', 'end;'] == ['create trig... end);\nend;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nend;'
+E         Left contains one more item: 'end;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[False-False-3] ________
+
+count = 3, uppercase = False, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig...nd);', 'end;'] == ['create trig... end);\nend;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nupdate t set c2 = (case when (v=2) then 3 end);\nend;'
+E         Left contains 2 more items, first extra item: 'update t set c2 = (case when (v=2) then 3 end);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[False-False-4] ________
+
+count = 4, uppercase = False, following = False
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig...nd);', 'end;'] == ['create trig... end);\nend;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nupdate t set c2 = (case when (v=2) then 3 end);\nupdate t set c3 = (case when (v=3) then 4 end);\nend;'
+E         Left contains 3 more items, first extra item: 'update t set c2 = (case when (v=2) then 3 end);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+_________ test_sequential_case_does_not_close_outer_block[True-True-2] _________
+
+count = 2, uppercase = True, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG... 'SELECT 42;'] == ['CREATE TRIG... 'SELECT 42;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nEND;'
+E         Left contains one more item: 'SELECT 42;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+_________ test_sequential_case_does_not_close_outer_block[True-True-3] _________
+
+count = 3, uppercase = True, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG... 'SELECT 42;'] == ['CREATE TRIG... 'SELECT 42;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nUPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);\nEND;'
+E         Left contains 2 more items, first extra item: 'END;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+_________ test_sequential_case_does_not_close_outer_block[True-True-4] _________
+
+count = 4, uppercase = True, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['CREATE TRIG... 'SELECT 42;'] == ['CREATE TRIG... 'SELECT 42;']
+E         
+E         At index 0 diff: 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);' != 'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\nUPDATE t SET c0 = (CASE WHEN (v=0) THEN 1 END);\nUPDATE t SET c1 = (CASE WHEN (v=1) THEN 2 END);\nUPDATE t SET c2 = (CASE WHEN (v=2) THEN 3 END);\nUPDATE t SET c3 = (CASE WHEN (v=3) THEN 4 END);\nEND;'
+E         Left contains 3 more items, first extra item: 'UPDATE t SET c3 = (CASE WHEN (v=3) THEN 4 END);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[True-False-2] _________
+
+count = 2, uppercase = False, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig... 'SELECT 42;'] == ['create trig... 'SELECT 42;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nend;'
+E         Left contains one more item: 'SELECT 42;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[True-False-3] _________
+
+count = 3, uppercase = False, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig... 'SELECT 42;'] == ['create trig... 'SELECT 42;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nupdate t set c2 = (case when (v=2) then 3 end);\nend;'
+E         Left contains 2 more items, first extra item: 'end;'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+________ test_sequential_case_does_not_close_outer_block[True-False-4] _________
+
+count = 4, uppercase = False, following = True
+
+    @pytest.mark.parametrize('count', [1, 2, 3, 4])
+    @pytest.mark.parametrize('uppercase', [True, False])
+    @pytest.mark.parametrize('following', [False, True])
+    def test_sequential_case_does_not_close_outer_block(count, uppercase, following):
+        updates = '\n'.join(f'UPDATE t SET c{i} = (CASE WHEN (v={i}) THEN {i+1} END);'
+                            for i in range(count))
+        trigger = f'CREATE TRIGGER my_trigger AFTER UPDATE ON t BEGIN\n{updates}\nEND;'
+        if not uppercase:
+            trigger = trigger.lower()
+        suffix = '\nSELECT 42;' if following else ''
+        statements = sqlparse.split(trigger + suffix)
+>       assert statements == [trigger] + (['SELECT 42;'] if following else [])
+E       AssertionError: assert ['create trig... 'SELECT 42;'] == ['create trig... 'SELECT 42;']
+E         
+E         At index 0 diff: 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);' != 'create trigger my_trigger after update on t begin\nupdate t set c0 = (case when (v=0) then 1 end);\nupdate t set c1 = (case when (v=1) then 2 end);\nupdate t set c2 = (case when (v=2) then 3 end);\nupdate t set c3 = (case when (v=3) then 4 end);\nend;'
+E         Left contains 3 more items, first extra item: 'update t set c3 = (case when (v=3) then 4 end);'
+E         Use -v to get more diff
+
+tests/test_supplemental.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-True-2]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-True-3]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-True-4]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-False-2]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-False-3]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[False-False-4]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-True-2]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-True-3]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-True-4]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-False-2]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-False-3]
+FAILED tests/test_supplemental.py::test_sequential_case_does_not_close_outer_block[True-False-4]
+12 failed, 6 passed in 0.07s

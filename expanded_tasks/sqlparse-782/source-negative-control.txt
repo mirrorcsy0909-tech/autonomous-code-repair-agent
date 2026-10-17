@@ -1,0 +1,244 @@
+FFFFFFFFFFFF...                                                          [100%]
+=================================== FAILURES ===================================
+_______________ test_group_boundary_spaces_are_removed[bar-=- ] ________________
+
+padding = ' ', operator = '=', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo = bar ) from' == '(where foo = bar) from'
+E         
+E         - (where foo = bar) from
+E         + (where foo = bar ) from
+E         ?                 +
+
+tests/test_supplemental.py:13: AssertionError
+_______________ test_group_boundary_spaces_are_removed[bar-=-  ] _______________
+
+padding = '  ', operator = '=', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo = bar ) from' == '(where foo = bar) from'
+E         
+E         - (where foo = bar) from
+E         + (where foo = bar ) from
+E         ?                 +
+
+tests/test_supplemental.py:13: AssertionError
+_____________ test_group_boundary_spaces_are_removed[bar-=-     ] ______________
+
+padding = '     ', operator = '=', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo = bar ) from' == '(where foo = bar) from'
+E         
+E         - (where foo = bar) from
+E         + (where foo = bar ) from
+E         ?                 +
+
+tests/test_supplemental.py:13: AssertionError
+_______________ test_group_boundary_spaces_are_removed[bar-<>- ] _______________
+
+padding = ' ', operator = '<>', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo <> bar ) from' == '(where foo <> bar) from'
+E         
+E         - (where foo <> bar) from
+E         + (where foo <> bar ) from
+E         ?                  +
+
+tests/test_supplemental.py:13: AssertionError
+______________ test_group_boundary_spaces_are_removed[bar-<>-  ] _______________
+
+padding = '  ', operator = '<>', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo <> bar ) from' == '(where foo <> bar) from'
+E         
+E         - (where foo <> bar) from
+E         + (where foo <> bar ) from
+E         ?                  +
+
+tests/test_supplemental.py:13: AssertionError
+_____________ test_group_boundary_spaces_are_removed[bar-<>-     ] _____________
+
+padding = '     ', operator = '<>', value = 'bar'
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       AssertionError: assert '(where foo <> bar ) from' == '(where foo <> bar) from'
+E         
+E         - (where foo <> bar) from
+E         + (where foo <> bar ) from
+E         ?                  +
+
+tests/test_supplemental.py:13: AssertionError
+______________ test_group_boundary_spaces_are_removed['a  b'-=- ] ______________
+
+padding = ' ', operator = '=', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo = 'a  b' ) from" == "(where foo = 'a  b') from"
+E         
+E         - (where foo = 'a  b') from
+E         + (where foo = 'a  b' ) from
+E         ?                    +
+
+tests/test_supplemental.py:13: AssertionError
+_____________ test_group_boundary_spaces_are_removed['a  b'-=-  ] ______________
+
+padding = '  ', operator = '=', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo = 'a  b' ) from" == "(where foo = 'a  b') from"
+E         
+E         - (where foo = 'a  b') from
+E         + (where foo = 'a  b' ) from
+E         ?                    +
+
+tests/test_supplemental.py:13: AssertionError
+____________ test_group_boundary_spaces_are_removed['a  b'-=-     ] ____________
+
+padding = '     ', operator = '=', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo = 'a  b' ) from" == "(where foo = 'a  b') from"
+E         
+E         - (where foo = 'a  b') from
+E         + (where foo = 'a  b' ) from
+E         ?                    +
+
+tests/test_supplemental.py:13: AssertionError
+_____________ test_group_boundary_spaces_are_removed['a  b'-<>- ] ______________
+
+padding = ' ', operator = '<>', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo <> 'a  b' ) from" == "(where foo <> 'a  b') from"
+E         
+E         - (where foo <> 'a  b') from
+E         + (where foo <> 'a  b' ) from
+E         ?                     +
+
+tests/test_supplemental.py:13: AssertionError
+_____________ test_group_boundary_spaces_are_removed['a  b'-<>-  ] _____________
+
+padding = '  ', operator = '<>', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo <> 'a  b' ) from" == "(where foo <> 'a  b') from"
+E         
+E         - (where foo <> 'a  b') from
+E         + (where foo <> 'a  b' ) from
+E         ?                     +
+
+tests/test_supplemental.py:13: AssertionError
+___________ test_group_boundary_spaces_are_removed['a  b'-<>-     ] ____________
+
+padding = '     ', operator = '<>', value = "'a  b'"
+
+    @pytest.mark.parametrize('padding', [' ', '  ', '     '])
+    @pytest.mark.parametrize('operator', ['=', '<>'])
+    @pytest.mark.parametrize('value', ['bar', "'a  b'"])
+    def test_group_boundary_spaces_are_removed(padding, operator, value):
+        text = f'({padding}where foo {operator} {value}{padding}) from'
+        expected = f'(where foo {operator} {value}) from'
+        result = sqlparse.format(text, strip_whitespace=True)
+>       assert result == expected
+E       assert "(where foo <> 'a  b' ) from" == "(where foo <> 'a  b') from"
+E         
+E         - (where foo <> 'a  b') from
+E         + (where foo <> 'a  b' ) from
+E         ?                     +
+
+tests/test_supplemental.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-=- ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-=-  ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-=-     ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-<>- ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-<>-  ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed[bar-<>-     ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-=- ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-=-  ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-=-     ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-<>- ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-<>-  ]
+FAILED tests/test_supplemental.py::test_group_boundary_spaces_are_removed['a  b'-<>-     ]
+12 failed, 3 passed in 0.06s
