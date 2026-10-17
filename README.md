@@ -1,132 +1,114 @@
-# Autonomous Code Repair Agent — Phase 1
+# Autonomous Code Repair Agent
 
-用 OpenHands Software Agent SDK 实现 `issue → 读取代码 → 修复 → 跑测试 → 输出 patch`。
-这是完整项目的第一阶段：先建立可重复执行和验证的基线，再扩展任务、sandbox 和评估。
+[![Harness checks](https://github.com/mirrorcsy0909-tech/autonomous-code-repair-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/mirrorcsy0909-tech/autonomous-code-repair-agent/actions/workflows/ci.yml)
 
-**当前状态：** SDK 配置与外部验证器已验证；尚未在你的模型账户上完成真实 Agent 修复。
-`smoke` 使用已知的人工修复来检查验证器，不代表 Agent 修复成功，不是 benchmark 分数。
+An experimental code-repair and evaluation harness built on **OpenHands SDK 1.53.0**. It reproduces historical Python issues in Docker, runs an iterative coding agent or a one-shot baseline, and independently verifies submitted source patches against public and supplemental tests.
 
-## 在 Mac 上启动
+The prepared catalog contains **10 historical tasks across three repositories: nine bug fixes and one feature/compatibility task**. This is a small, curated engineering evaluation, not a general repair benchmark.
 
-解压后，把 `code-repair-agent` 文件夹放到你的项目目录，用 VS Code 打开该文件夹。
-以下命令在这个文件夹的终端执行。需要 Git、uv 和 Python 3.12 或 3.13。
+## What this project adds
 
-```bash
-uv sync --python 3.13
-uv run python repair.py doctor
-uv run python repair.py smoke
-cp .env.example .env
-```
+OpenHands provides the agent runtime, conversation state, model integration, tool interfaces and existing workspace/sandbox capabilities. This project adds:
 
-`doctor` 应显示 SDK/tools 都是 `1.53.0`。本项目固定两个包的相同版本，避免不匹配。
-`smoke` 应显示 3 个 baseline failures，以及人工已知 patch 的 75 tests passed。
+- A task-specific repository tool with four operations: list files, read files, write allowlisted source files and run the configured test suite.
+- Historical fixtures with upstream commit attribution, integrity hashes, reproducible failing baselines and external supplemental tests.
+- Fresh-container patch replay, exact test-count contracts, source-scope validation and source-only candidate checkpoints.
+- Supervised workers with deadlines, retry metadata, process/container cleanup and safe failure-type records.
+- Paired workflow reports covering outcomes, recorded latency, SDK usage and separate static patch-quality hints.
 
-默认 `.env` 使用订阅登录：
+It does not implement a new foundation model or replace the OpenHands agent runtime.
 
-```dotenv
-REPAIR_AUTH=subscription
-OPENHANDS_SUBSCRIPTION_MODEL=gpt-5.2-codex
-REPAIR_MAX_ITERATIONS=20
-```
+## Quick start
 
-这里显式传入模型名称，避免 SDK 的订阅模型参数缺失。如果你已经跑通了别的
-订阅模型，就把 `OPENHANDS_SUBSCRIPTION_MODEL` 改为你已验证可用的名称。
-第一次运行时 SDK 会启动本机 OAuth 登录；你已登录时可复用 SDK 的本地凭据。
-模型可用性以你账户和 SDK 的实际返回为准。
+Use macOS or Linux with Python 3.12+, Git, [uv](https://docs.astral.sh/uv/) and Docker. Python 3.12 is the CI runner version; task containers use Python 3.13. Keep the committed `pyproject.toml` and `uv.lock` together.
 
-然后跑第一个真实 Agent 任务：
+From the project directory:
 
 ```bash
-uv run python repair.py prepare --id run-001
-uv run python repair.py run --id run-001
+uv sync --frozen
+uv run python project.py doctor --catalog all --offline
+uv run python project.py list --catalog all
+uv run python project.py check
 ```
 
-`prepare` 的 **3 failed, 3 passed 是预期的 bug 复现**。
-`run` 结束后，由验证器输出 `verification_status`。只有 `passed` 才说明 patch
-通过本任务的公共测试与补充测试；Agent 自己说“完成”不算验收。
+These commands do not call a model. The explicit harness checks avoid discovering the intentionally broken fixture tests as host tests.
 
-重新尝试请用新 ID，不要覆盖已有运行：
+Build and validate one task catalog:
 
 ```bash
-uv run python repair.py prepare --id run-002
-uv run python repair.py run --id run-002
+uv run python project.py build --catalog sqlparse
+uv run python project.py doctor --catalog sqlparse
+uv run python project.py smoke --catalog sqlparse --id project-smoke-001
 ```
 
-如果使用 API，把 `.env` 改为 `REPAIR_AUTH=api`，填写你实际有权限调用的
-`LLM_MODEL` 和 `LLM_API_KEY`；`LLM_BASE_URL` 仅在需要时填写。
-模型遵循 SDK/LiteLLM 的 provider/model 命名。不要把 `.env` 提交到 GitHub。
+The build context contains only its Dockerfile. Smoke reproduces the baseline failures, rejects an unchanged source tree and checks the trusted upstream reference fixes in fresh containers. It uses no model; it is not an agent success measurement. Choose a fresh ID when repeating a smoke.
 
-## 第一轮实际做什么
+## Optional live comparison
 
-任务仓库包含一个发送前分批的函数 `make_batches`。它能处理完整批次，但会漏掉
-最后不足一批的记录。Agent 拿到 issue 和 6 个现有测试，自行阅读代码、重现问题、
-修改 `batching.py`，再运行测试。项目代码没有写死修复答案；仅 `smoke` 有人工已知
-修复，用于检查整个验证流程。
-
-验证器执行：
-
-1. 相对于记录下来的原始 commit 提取 diff。
-2. 检查是否只修改了允许的源文件；修改 tests/config 会失败。
-3. 将 patch 应用到全新的原始仓库副本。
-4. 保留原始公共测试，加上补充 contract 测试，验证边界输入和不丢记录。
-5. 保存测试退出码、日志、patch 和判定。
-
-补充测试放在 Agent 工作目录之外，这是代码职责分离，**不是安全隔离，也不是秘密测试**。
-Phase 1 仅支持我们提供的可信 Python fixture；本地终端工具有宿主机权限，prompt
-里的路径/联网限制不是强制安全边界。Docker sandbox 是下一阶段，完成前不要用来
-运行陌生仓库。当前 20 iterations 是循环上限，不是美元花费或总时长上限。
-
-## 文件结构
-
-```text
-code-repair-agent/
-  repair.py                  # prepare / run / verify / doctor / smoke
-  pyproject.toml             # 固定匹配的 SDK 版本
-  uv.lock                    # 可复现依赖
-  .env.example               # 无凭据的配置样例
-  fixtures/batch-service/    # 已知带 bug 的测试仓库
-  tasks/                     # issue 和可修改文件清单
-  evaluator/                 # 外部补充测试
-  tests/                     # 验证器自身的测试
-  docs/phase-1.md             # 本阶段学习与验收
-  runs/                      # 运行后生成；不进 Git
-```
-
-每次运行输出到 `runs/<id>/`：
-
-| 文件 | 用途 |
-|---|---|
-| `workspace/` | Agent 实际修改的仓库副本 |
-| `manifest.json` | 任务、原始 commit、baseline 退出码 |
-| `baseline-tests.txt` | 修复前的失败证据 |
-| `events.jsonl` | 事件类型与时间；不保存 prompt、工具内容或推理文本 |
-| `agent-run.json` | 模型、认证方式、迭代上限、执行状态、Agent 耗时 |
-| `patch.diff` | 相对原始 commit 的修复 |
-| `verification-tests.txt` | 外部验证的测试结果，实际进入测试时生成 |
-| `verification.json` | 验收状态及失败原因 |
-
-SDK 会在终端展示交互；这里的 `events.jsonl` 仅是事件元数据，不是完整 tracing。
-Agent 运行出现异常时，`agent-run.json` 会记录异常类型。可以单独运行
-`uv run python repair.py verify --id run-001` 检查其留下的 patch。
-
-验证器自身检查：
+Only live `compare`, `batch` and `run` actions call a model. For a new checkout, copy `.env.example` to `.env` and configure either the SDK-supported local subscription login or direct API mode. Keep an existing `.env`; the example is not a replacement for personal configuration. The recorded experiments used `openai/gpt-5.6-sol`; model selection remains in local configuration.
 
 ```bash
-uv run python -m pytest -q
+uv run python project.py compare --catalog sqlparse --prefix experiment-001
+uv run python project.py report --catalog sqlparse --prefix experiment-001
+uv run python project.py export --catalog sqlparse --prefix experiment-001
 ```
 
-## 下一阶段
+This schedules five tasks × two workflows × one repeat, or ten workflow attempts. An iterative attempt can contain multiple model calls. Report/export do not call a model. Use a new prefix for a new experiment; existing runs are never silently resumed or overwritten.
 
-先亲自跑通并解释一个真实修复。随后依次添加 Docker sandbox、多个独立任务、
-失败分类与有限重试、完整工具事件与成本统计、固定评测集和 baseline 比较。
-有测量证据后再判断是否需要 Planner/Coder/Verifier 多 Agent。
-FastAPI、GitHub issue 接入和 UI 放到核心流程稳定之后。
+| Catalog | Tasks | Workflows | Image |
+| --- | ---: | --- | --- |
+| `itsdangerous` | 3 | Agent-only pilot via `batch` | `code-repair-python:itsdangerous126` |
+| `dotenv` | 2 | One-shot and iterative via `compare` | `code-repair-python:dotenv-comparison-v1` |
+| `sqlparse` | 5 | One-shot and iterative via `compare` | `code-repair-python:expanded-v1` |
 
-不要把规划中的功能或人工 smoke 结果写成简历上已完成的成果。
+For example, `uv run python project.py batch --catalog itsdangerous --prefix pilot-new` runs the three Agent-only tasks. ItsDangerous supports unified `report`; ZIP export currently belongs to the two paired catalogs. The original `expanded_agent.py`, `comparison_agent.py` and `suite_agent.py` commands remain supported.
 
-## 官方参考
+## Recorded observations
 
-- SDK: https://github.com/OpenHands/software-agent-sdk
-- 安装: https://docs.openhands.dev/sdk/getting-started
-- 订阅认证: https://docs.openhands.dev/sdk/guides/llm-subscriptions
-- Conversation: https://docs.openhands.dev/sdk/api-reference/openhands.sdk.conversation
+These are selected observed batches. Curated machine-readable summaries and source-archive hashes are in [examples/reports](examples/reports/README.md); they contain no raw model responses, worker logs or local host paths.
+
+| Batch | Unique tasks | Repeats per workflow | One-shot passed | Agent passed | Recorded median seconds: one-shot / Agent | SDK input + output tokens: one-shot / Agent |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| `compare-002` | 2 dotenv tasks | 3 | 6/6 | 6/6 | 28.59 / 77.26 | 91,770 / 814,787 |
+| `expanded-001` | 5 sqlparse tasks | 1 | 2/5 | 1/5 | 87.31 / 95.18 | Usage is incomplete on errors |
+| `expanded-002` | 5 sqlparse tasks | 1 | 5/5 | 5/5 | 34.25 / 66.68 | 178,761 / 712,262 |
+
+The interrupted first sqlparse batch is retained. Three one-shot attempts explicitly reported response read timeouts; four Agent attempts reported conversation errors whose underlying types were not captured by the old logger. Large wall-clock gaps suggest suspend or clock adjustment, but do not prove the cause of the errors. The later batch completed all ten attempts.
+
+Recorded program latency excludes prepare/auth and can omit Mac suspend time. `expanded-002` still has one approximately 94-second clock gap; its latency numbers are not complete elapsed-clock measurements. The sample contains historical public issues and may be affected by memorization. One-shot receives supplied source/context while Agent retrieves repository files through tools; this is not an equal-token or equal-compute comparison.
+
+On these completed batches, One-shot matched the observed task pass rate with lower recorded latency and usage. No Agent success-rate advantage has been established. Both 701 patches in `expanded-002` triggered review hints for broad edits/documentation removal despite passing tests. Test success and merge readiness are different properties.
+
+## Repository layout
+
+| Path | Responsibility |
+| --- | --- |
+| `project.py` | Public command routing, environment checks and fixture integrity checks |
+| `suite_agent.py`, `comparison_agent.py`, `expanded_agent.py` | Existing task and workflow implementations |
+| `docker_agent.py`, `repair.py`, `real_task.py` | Shared helpers and retained early-stage commands |
+| `execution_control.py`, `run_diagnostics.py`, `patch_quality.py` | Worker limits, failure/checkpoint metadata and static review hints |
+| `repair_suite/`, `comparison_tasks/`, `expanded_tasks/` | Trusted task fixtures, provenance, public tests, reference fixes and external evaluators |
+| `test_*.py` | Explicit harness tests; fixture suites are separate |
+| `runs/` | Local runtime evidence; ignored by Git |
+| `examples/reports/` | Curated observed summaries intended for review |
+| `.github/workflows/ci.yml` | Offline Linux/macOS checks and optional manual Docker reference smoke |
+
+The structure preserves existing file locations and experiment paths. The unified entry point delegates to the tested implementations rather than moving their state or changing their prompts.
+
+## Limits and safeguards
+
+Default worker limits are 300 seconds per run and 120 seconds for prepare, with a 60-second SDK request/stream idle timeout and two SDK attempts including the initial request. A worker deadline also covers authentication and independent verification; termination and cleanup may take additional time. New workers use the greater of monotonic and UTC wall-clock elapsed time; a forward system-clock adjustment can conservatively trigger timeout. A sleeping host cannot perform cleanup until it wakes.
+
+The SDK subscription transport omits the requested output-token limit. `8192` is **not a verified service-enforced cap**. API configuration is also not proof of server enforcement. SDK cost estimates are not subscription bills, and failed-call usage may be incomplete.
+
+Candidate source executes only in restricted Docker containers in the current workflows: network disabled, nonroot, read-only root, bounded resources, no host mounts, host credentials or Docker socket. The SDK remains on the host with its model connection. Source checkpoints and quality analysis handle candidate text as data on the host. This is task-specific isolation, not a claim of a universal security boundary against all container escapes.
+
+See [architecture](docs/architecture.md), [evaluation](docs/evaluation.md), [operations](docs/operations.md) and [third-party attribution](THIRD_PARTY_NOTICES.md). The early standalone host-based `repair.py` command is a historical wiring example; use the unified Docker workflows for current experiments.
+
+## CI
+
+The supplied workflow runs explicit harness checks on Linux and macOS with locked dependencies and no model credentials. Docker builds/reference smoke are opt-in through manual workflow dispatch. It does not run candidate repairs with a live model or publish anything.
+
+The [initial CI run](https://github.com/mirrorcsy0909-tech/autonomous-code-repair-agent/actions/runs/39063840991) passed on both Linux and macOS. The optional Docker job was skipped by configuration; Docker reference smoke was validated separately on the development Mac. The badge links to the latest workflow status.
+
+Project documentation, code comments and command descriptions use English. Non-English strings in fixtures and supplemental tests are intentional Unicode/encoding test data; upstream fixture bytes are preserved for integrity checks.
